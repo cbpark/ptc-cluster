@@ -37,10 +37,15 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 of the "keys".
 ```
 
-For example, if you want to use [ROOT](http://root.cern.ch/), run `module load root/6.12.06`. The version number could be omitted if only one version is available or the default module is good enough. The list of loaded modules can be seen by
+For example, if you want to use [ROOT](http://root.cern.ch/), run
 
 ``` no-highlight
-$ module load root/6.12.06
+module load root/6.12.06
+```
+
+The version number could be omitted if only one version is available or the default module is good enough to use. The list of loaded modules can be seen by
+
+``` no-highlight
 $ module list
 
 Currently Loaded Modules:
@@ -48,7 +53,7 @@ Currently Loaded Modules:
   2) prun/1.2    4) openmpi/1.10.7   6) python/2.7.14
 ```
 
-The above list let you know that ROOT 6.12.06 and Python 2.7.14 are loaded in the current environment.
+The list in the above tells you that ROOT 6.12.06 and Python 2.7.14 are loaded in the current environment. Indeed, they are added to your `$PATH`.
 
 ``` no-highlight
 $ which root

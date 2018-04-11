@@ -4,6 +4,8 @@ site_description: User's guide to the PTC cluster at IBS-CTPU
 repo_url: https://github.com/cbpark/ptc-cluster/
 site_author: Chan Beom Park
 
+extra_javascript: [docs.js]
+
 pages:
     - Home: index.md
     - User Guide:

@@ -8,7 +8,7 @@ The PTC cluster consists of 1 **master node** and 21 **compute nodes** now. Ther
 
 The master node has 1.6 GHz 6-core Intel Xeon CPU and 16 GB memory with 32 GB swap space. Note that it is not intended for hard computations or tasks, but for distributing and logging computing jobs to compute nodes. In most cases, you will run commands at the master node and the real computations will be performed by the compute node.
 
-Each compute node has a number of CPU cores: 24 to 72 cores with clock speeds of 2.2 GHz to 2.6 GHz. The total accumulated number of CPU cores of all the compute node is 952. The hyper-threading of CPU is disabled for all nodes. Each node has more than 128 GB memory.
+Each compute node has quite a number of CPU cores, 24 to 72 cores with clock speeds of 2.2 GHz to 2.6 GHz. The total accumulated number of CPU cores of all the compute node is 952. The hyper-threading of CPU is disabled for all nodes. Each node has more than 128 GB memory.
 
 ### Storage
 
@@ -33,7 +33,9 @@ You can list the installed packages by running:
 yum list installed
 ```
 
-The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://home.thep.lu.se/Pythia/) are provided through [Environment Modules](http://modules.sourceforge.net/). See the page of [Environment modules](modules.md). Note that Mathematica is not installed and it will never be. We have a dedicated workstation server for that. And, the Fortran 77 (`g77`) compiler is not supported any longer.
+The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://home.thep.lu.se/Pythia/) are provided through [Environment Modules](http://modules.sourceforge.net/). See the page of [Environment modules](modules.md).
+
+Note that Mathematica is not installed and it will never be since we have a dedicated workstation server for that. And, the Fortran 77 compilers such as `g77` are not supported any longer. Update your codes or contact the developer so that they can be compiled by modern Fortran compilers. The Intel C++ and Fortran compilers are not installed as they are not free software and our budget is limited.
 
 ## SSH connection
 

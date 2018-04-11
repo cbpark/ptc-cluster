@@ -104,7 +104,13 @@ JOBID PARTITION     NAME     USER    STATE       TIME   TIME_LIMIT  NODES  NODEL
   330  espresso hostname   cbpark  PENDING       0:00        20:00      5  (PartitionNodeLimit)
 ```
 
-The job can be deleted by running `scancel 330`.
+The job can be deleted by running `scancel 330` (see `JOBID`). To cancel all the jobs of yours,
+
+``` no-highlight
+scancel -u <username>
+```
+
+where `<username>` is your user ID.
 
 Complicated operations can be done by submitting a script, which is reusable for later execution. Let's say the script is `run.sh`.
 
@@ -127,13 +133,27 @@ srun echo 'Greetings from' $(/bin/hostname)
 srun sleep 60
 ```
 
-The above script prints `Hello, world! from hostname` 10 times (`--ntaskes=10`) to `output.txt` (`--output=output.txt`) using two nodes (`--nodes=2`) and 100 MB per CPU (`--mem-per-cpu=100`). The time limit has been set to be 10 minutes (`--time=10:00`). The user will receive an email notification when the job has been ended. Note that lines beginning with `#SBATCH` are not comments. `#SBATCH` is a prefix to set options. If you want to comment out the line, attach one more `#`, i.e., `##SBATCH`. `-l` option in the first line means that the shell acts as if it had been invoked as a login shell. To submit the script to the job scheduler, run
+The above script prints `Hello, world! from hostname` 10 times (`--ntaskes=10`) to `output.txt` (`--output=output.txt`) using two nodes (`--nodes=2`) and 100 MB per CPU (`--mem-per-cpu=100`). The time limit has been set to be 10 minutes (`--time=10:00`). The user will receive an email notification when the job has been ended. Note that lines beginning with `#SBATCH` are not comments. `#SBATCH` is a prefix to set options. If you want to comment out the line, attach one more `#`, i.e., `##SBATCH`. `-l` option in the first line means that the shell acts as if it had been invoked as a login shell.
+
+Before submitting the script to the job scheduler, it's advisable to validate the script.
+
+``` no-highlight
+$ sbatch --test-only run.sh
+sbatch: Job 564 to start at 2018-04-12 00:20:54 using 80 processors on compute-0-[0-1]
+```
+To actually submit the script to the job scheduler, run
 
 ``` no-highlight
 sbatch run.sh
 ```
 
 See `man sbatch` or the [sbatch](https://slurm.schedmd.com/sbatch.html) page on the official website for available options. The options that might be useful are `--deadline`, `--workdir`, `--mem`, `--ntasks-per-node`, and so on.
+
+If you want to cancel a running job and resubmit it, memorize the job id and run
+
+``` no-highlight
+scontrol requeue <jobid>
+```
 
 Sometimes, you want interactive operations for a job.
 

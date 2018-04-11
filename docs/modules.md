@@ -4,23 +4,26 @@ The physics softwares and common libraries such as [GNU Scientific Library](http
 
 The command `module avail` shows all the available modules.
 
-``` plain
-module avail
+``` no-highlight
+$ module avail
 
----------------------------------- /opt/ohpc/pub/moduledeps/gnu7-openmpi -----------------------------------
+----------------------- /opt/ohpc/pub/moduledeps/gnu7-openmpi -----------------------
    boost/1.63.0    fftw/3.3.6    herwig/7.1.2    scipy/0.19.1    whizard/2.6.3
 
--------------------------------------- /opt/ohpc/pub/moduledeps/gnu7 ---------------------------------------
-   ExRootAnalysis/1.1.4        hdf5/1.10.1       ocaml/4.06.0           python/3.4.6
-   MG5aMC_PY8_interface/1.0    hepmc/2.06.09     ocr/1.0.1              python/3.5.4
-   ccfits/2.5                  lhapdf/6.2.1      openblas/0.2.20        python/3.6.4
-   cfitsio/3.430               looptools/2.14    openmpi/1.10.7  (L)    rivet/2.6.0
-   collier/1.2                 metis/5.1.0       openmpi3/3.0.0         root/6.12.06
-   delphes/3.4.1               mpich/3.2         pdtoolkit/3.24         sherpa/2.2.4
-   fastjet/3.3.0               mvapich2/2.2      pythia/8.2.35          superlu/5.2.1
-   gsl/2.4                     numpy/1.13.1      python/2.7.14   (D)    yoda/1.7.0b1
+--------------------------- /opt/ohpc/pub/moduledeps/gnu7 ---------------------------
+   ExRootAnalysis/1.1.4        lhapdf/6.2.1           pdtoolkit/3.24
+   MG5aMC_PY8_interface/1.0    looptools/2.14         pythia/8.2.35
+   ccfits/2.5                  metis/5.1.0            python/2.7.14  (D)
+   cfitsio/3.430               mpich/3.2              python/3.4.6
+   collier/1.2                 mvapich2/2.2           python/3.5.4
+   delphes/3.4.1               numpy/1.13.1           python/3.6.4
+   fastjet/3.3.0               ocaml/4.06.0           rivet/2.6.0
+   golem/1.3.3                 ocr/1.0.1              root/6.12.06
+   gsl/2.4                     openblas/0.2.20        sherpa/2.2.4
+   hdf5/1.10.1                 openmpi/1.10.7  (L)    superlu/5.2.1
+   hepmc/2.06.09               openmpi3/3.0.0         yoda/1.7.0b1
 
----------------------------------------- /opt/ohpc/pub/modulefiles -----------------------------------------
+----------------------------- /opt/ohpc/pub/modulefiles -----------------------------
    autotools   (L)    gnu7/7.2.0   (L)    ohpc       (L)    prun/1.2        (L)
    cmake/3.9.2        hwloc/1.11.8        papi/5.5.1        singularity/2.4
    gnu/5.4.0          llvm5/5.0.0         pmix/1.2.3        valgrind/3.13.0
@@ -30,21 +33,24 @@ module avail
    D:  Default Module
 
 Use "module spider" to find all possible modules.
-Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+Use "module keyword key1 key2 ..." to search for all possible modules matching any
+of the "keys".
 ```
 
 For example, if you want to use [ROOT](http://root.cern.ch/), run `module load root/6.12.06`. The version number could be omitted if only one version is available or the default module is good enough. The list of loaded modules can be seen by
 
-``` plain
+``` no-highlight
+$ module load root/6.12.06
 $ module list
 
 Currently Loaded Modules:
-  1) autotools   2) prun/1.2   3) gnu7/7.2.0   4) openmpi/1.10.7   5) ohpc   6) python/2.7.14   7) root/6.12.06
+  1) autotools   3) gnu7/7.2.0       5) ohpc            7) root/6.12.06
+  2) prun/1.2    4) openmpi/1.10.7   6) python/2.7.14
 ```
 
 The above list let you know that ROOT 6.12.06 and Python 2.7.14 are loaded in the current environment.
 
-``` plain
+``` no-highlight
 $ which root
 /opt/ohpc/pub/libs/gnu7/root/6.12.06/bin/root
 $ which python
@@ -53,9 +59,9 @@ $ which python
 
 `module show` prints out the commands in the module file. For example,
 
-``` plain
+``` no-highlight
 $ module show root
-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
    /opt/ohpc/pub/moduledeps/gnu7/root/6.12.06:
 ---------------------------------------------------------------------------------
 whatis("Name: ROOT built with gnu7 toolchain ")
@@ -99,7 +105,7 @@ srun root -b -q $ROOTSYS/tutorials/math/binomial.C
 
 running `sbatch run.sh` (`run.sh` is the name of the script given above) gives us
 
-``` plain
+``` no-highlight
 $ cat root_output.txt
    ------------------------------------------------------------
   | Welcome to ROOT 6.12/06                http://root.cern.ch |
@@ -138,7 +144,7 @@ Average Error = 1.064988e-13
 
 `module unload` will unload the module.
 
-``` plain
+``` no-highlight
 $ module unload root
 $ module list
 
@@ -148,12 +154,13 @@ Currently Loaded Modules:
 
 Note that Python 2.7.14 has been unloaded as well since it was loaded as a requirement to load ROOT. If what you want is just Python 2.7.14,
 
-``` plain
+``` no-highlight
 $ module load python/2.7.14
 $ module list
 
 Currently Loaded Modules:
-  1) autotools   2) prun/1.2   3) gnu7/7.2.0   4) openmpi/1.10.7   5) ohpc   6) python/2.7.14
+  1) autotools   3) gnu7/7.2.0       5) ohpc
+  2) prun/1.2    4) openmpi/1.10.7   6) python/2.7.14
 
 $ which python
 /opt/ohpc/pub/libs/gnu7/python-2.7.14/bin/python
@@ -161,7 +168,7 @@ $ which python
 
 `module avail` shows that you could use GCC 5.4.0 (`gnu/5.4.0`), while GCC 7.2.0 (`gnu7/7.2.0`) is currently loaded.
 
-``` plain
+``` no-highlight
 $ gcc --version
 gcc (GCC) 7.2.0
 Copyright (C) 2017 Free Software Foundation, Inc.
@@ -171,7 +178,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Since GCC 7.2.0 conflicts with GCC 5.4.0 (they cannot coexist in an environment), you cannot load directly GCC 5, but switch to it by running
 
-``` plain
+``` no-highlight
 $ module switch gnu7 gnu/5.4.0
 
 Due to MODULEPATH changes, the following have been reloaded:
@@ -183,7 +190,8 @@ The following have been reloaded with a version change:
 $ module list
 
 Currently Loaded Modules:
-  1) autotools   2) prun/1.2   3) ohpc   4) gnu/5.4.0   5) openmpi/1.10.6   6) python/2.7.14
+  1) autotools   3) ohpc        5) openmpi/1.10.6
+  2) prun/1.2    4) gnu/5.4.0   6) python/2.7.14
 
 $ gcc --version
 gcc (GCC) 5.4.0
@@ -194,7 +202,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 The list of loaded modules will be reset once you re-login the master server. All the modules can be removed from your environment by purging them.
 
-``` plain
+``` no-highlight
 $ module purge
 $ module list
 No modules loaded
@@ -202,7 +210,7 @@ No modules loaded
 
 Sometimes, it's necessary to remove `.lmod.d` in your home directory to refresh the list of available modules.
 
-``` plain
+``` no-highlight
 rm -rf ~/.lmod.d
 module avail
 ```

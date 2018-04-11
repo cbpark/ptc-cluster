@@ -29,7 +29,7 @@ The operating system of all the nodes is [CentOS](https://www.centos.org/) 7.4 w
 
 You can list the installed packages by running:
 
-``` plain
+``` no-highlight
 yum list installed
 ```
 
@@ -39,13 +39,13 @@ The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://h
 
 Users can connect to the master node via SSH with port 22:
 
-``` plain
+``` no-highlight
 ssh userid@ptc.ibs.re.kr
 ```
 
 If a graphical user interface is necessary, it can be achieved using X11 forwarding.
 
-``` plain
+``` no-highlight
 ssh -X userid@ptc.ibs.re.kr
 ```
 

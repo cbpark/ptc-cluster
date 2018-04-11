@@ -8,30 +8,33 @@ There are two ways to run MadGraph, _interactive execution_ and _batch processin
 
 Recall that running hard computations on the mater node is not allowed. Still, We can get an interactive command interface in the compute node by `srun`. Before going there, we need to load some [modules](../modules.md) to use MadGraph.
 
-``` plain
+``` no-highlight
 module load gnu7 MG5aMC_PY8_interface collier delphes
 ```
 
 Then, check the list of currently loaded modules as
 
-``` plain
+``` no-highlight
 $ module list
 
 Currently Loaded Modules:
-  1) autotools   3) ohpc         5) openmpi/1.10.7   7) hepmc/2.06.09   9) pythia/8.2.35             11) collier/1.2    13) root/6.12.06
-  2) prun/1.2    4) gnu7/7.2.0   6) fastjet/3.3.0    8) lhapdf/6.2.1   10) MG5aMC_PY8_interface/1.0  12) python/2.7.14  14) delphes/3.4.1
+  1) autotools        6) fastjet/3.3.0             11) collier/1.2
+  2) prun/1.2         7) hepmc/2.06.09             12) python/2.7.14
+  3) ohpc             8) lhapdf/6.2.1              13) root/6.12.06
+  4) gnu7/7.2.0       9) pythia/8.2.35             14) delphes/3.4.1
+  5) openmpi/1.10.7  10) MG5aMC_PY8_interface/1.0
 ```
 
 We now jump to a compute node. The compute node will automatically be chosen by Slurm.
 
-``` plain
+``` no-highlight
 $ srun -p longlunch --pty bash
 [cbpark@compute-0-0 MG5_aMC_v2_6_1]$
 ```
 
 Here, `longlunch` is a name of the Slurm [partition](../job-scheduler.md).
 
-``` plain
+``` no-highlight
 $ scontrol show partition longlunch
 PartitionName=longlunch
    AllowGroups=usercl1 AllowAccounts=ALL AllowQos=ALL
@@ -49,7 +52,7 @@ As we can see from the above, the `longlunch` partition is allowed only for user
 
 Now we modify some fields of `input/mg5_configuration.txt`.
 
-``` plain
+``` no-highlight
 pythia8_path = /opt/ohpc/pub/libs/gnu7/pythia/8.2.35
 
 mg5amc_py8_interface_path = /opt/ohpc/pub/libs/gnu7/MG5aMC_PY8_interface/1.0
@@ -78,11 +81,11 @@ collier = /opt/ohpc/pub/libs/gnu7/collier/1.2/lib
 
 The path of each package can be found by `module show`. For example,
 
-``` plain
+``` no-highlight
 $ module show hepmc
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
    /opt/ohpc/pub/moduledeps/gnu7/hepmc/2.06.09:
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 whatis("Name: HepMC built with gnu7 toolchain ")
 whatis("Version: 2.06.09 ")
 whatis("Category: runtime library ")
@@ -101,7 +104,7 @@ Version 2.06.09
 
 The path of HepMC is `/opt/ohpc/pub/libs/gnu7/hepmc/2.06.09` as can be deduced from the above. `lhapdf-config` and `fastjet-config` are already listed in our `PATH`.
 
-``` plain
+``` no-highlight
 $ which lhapdf-config
 /opt/ohpc/pub/libs/gnu7/lhapdf/6.2.1/bin/lhapdf-config
 $ which fastjet-config
@@ -110,7 +113,7 @@ $ which fastjet-config
 
 The most important part of the configuration file for running in the cluster is
 
-``` plain
+``` no-highlight
 run_mode = 1
 
 cluster_type = slurm
@@ -122,7 +125,7 @@ Here, we choose the cluster running mode (`run_mode = 1`) in the Slurm workload 
 
 After modifying the other fields if necessary, we run `mg5_aMC`.
 
-``` plain
+``` no-highlight
 [cbpark@compute-0-0 MG5_aMC_v2_6_1]$ ./bin/mg5_aMC
 ************************************************************
 *                                                          *
@@ -173,7 +176,7 @@ MG5_aMC>
 
 We generate the SM top-pair process at the LHC beam condition and save the output to the `ttbar` directory, then launch the event generation. The event samples will be showered and hadronized by Pythia. The detector simulation will be performed by [Delphes](https://cp3.irmp.ucl.ac.be/projects/delphes) using the default card.
 
-``` plain
+``` no-highlight
 MG5_aMC> generate p p > t t~
 MG5_aMC> output ttbar
 MG5_aMC> launch
@@ -186,7 +189,7 @@ MG5_aMC> launch
 
 Sometimes, we would see the harmless warning and error messages like
 
-``` plain
+``` no-highlight
 WARNING: cluster.get_job_identifier runs unexpectedly. This should be fine but report this message if you have problem.
 ** [################################################################] (100.00%)(0.00%)
 Error in <TList::Clear>: A list is accessing an object (0x3df8be0) already deleted (list name = TList)
@@ -194,7 +197,7 @@ Error in <TList::Clear>: A list is accessing an object (0x3df8be0) already delet
 
 After successful running, we can return back to the master node.
 
-``` plain
+``` no-highlight
 [cbpark@compute-0-0 MG5_aMC_v2_6_1]$ exit
 ```
 
@@ -206,7 +209,7 @@ The interactive execution would be convenient when one wants to test a model or 
 
 At first, load the necessary modules:
 
-``` plain
+``` no-highlight
 module load gnu7 MG5aMC_PY8_interface collier delphes
 ```
 
@@ -237,13 +240,13 @@ See [How to script MG5 run?](https://answers.launchpad.net/mg5amcnlo/+faq/2186) 
 
 We submit the script to the job queue as
 
-``` plain
+``` no-highlight
 sbatch run_mg5_slurm.sh
 ```
 
 and it's done. `squeue` shows that our job is running.
 
-``` plain
+``` no-highlight
 $ squeue
 JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
   540 longlunch ttbar_mg   cbpark  RUNNING       1:21   2:00:00     12 compute-0-[0-11]
@@ -251,6 +254,6 @@ JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(
 
 Since the standard output is written to `ttbar_mg5_output.log` (`#SBATCH --output=ttbar_mg5_output.log`), we can check the messages from the Madgraph while running.
 
-``` plain
+``` no-highlight
 tail -f ttbar_mg5_output.log
 ```

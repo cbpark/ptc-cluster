@@ -10,7 +10,7 @@ The users of the old PTC cluster system would be more familiar with Sun Grid Eng
 
 The partitions group nodes into logical sets. Each partition has its own job size limit, job time limit, and user group permitted to use it. It is sometimes called job queues. The `sinfo` command reports the state of partitions.
 
-``` plain
+``` no-highlight
 $ sinfo
 PARTITION    AVAIL  TIMELIMIT JOB_SIZE MAX_CPUS_PER_NODE NODES(A/I/O/T)    CPUS(A/I/O/T)
 espresso*       up      20:00      1-2                10      0/21/0/21      0/952/0/952
@@ -20,7 +20,7 @@ The name of the partition is `espresso`, which is up and running. `*` means that
 
 The other useful command is `scontrol show partition`.
 
-``` plain
+``` no-highlight
 $ scontrol show partition espresso
 PartitionName=espresso
    AllowGroups=ALL AllowAccounts=ALL AllowQos=ALL
@@ -40,7 +40,7 @@ A new user can use only the `espresso` partition. The other partitions with a lo
 
 The `squeue` command shows the status of running jobs.
 
-``` plain
+``` no-highlight
 $ squeue
 JOBID PARTITION     NAME     USER    STATE       TIME   TIME_LIMIT  NODES
   317 microcent my.scrip   cbpark COMPLETI       0:50         1:00      1
@@ -50,7 +50,7 @@ JOBID PARTITION     NAME     USER    STATE       TIME   TIME_LIMIT  NODES
 
 `scontrol show job` can be used to see the detail of the submitted job.
 
-``` plain
+``` no-highlight
 $ scontrol show job 315
 JobId=315 JobName=zsh
    UserId=cbpark(1001) GroupId=cbpark(1001) MCS_label=N/A
@@ -81,7 +81,7 @@ JobId=315 JobName=zsh
 
 The simplest command to run tasks on the compute nodes is `srun`.
 
-``` plain
+``` no-highlight
 $ srun -N 2 -n 5 -p espresso /bin/hostname
 compute-0-1
 compute-0-0
@@ -92,13 +92,13 @@ compute-0-0
 
 The above task print the hostname of the compute nodes in the `espresso` partition (`-p espresso`) using 5 CPUs (`-n 5`) of 2 nodes (`-N 2`). Note that the maximum number of nodes per task in the `espresso` partition is set to be 2. If you set a larger number, the job will not run and await more resources.
 
-``` plain
+``` no-highlight
 $ srun -N 5 -n 10 -p espresso /bin/hostname
 srun: Requested partition configuration not available now
 srun: job 330 queued and waiting for resources
 ```
 
-``` plain
+``` no-highlight
 $ squeue
 JOBID PARTITION     NAME     USER    STATE       TIME   TIME_LIMIT  NODES  NODELIST(REASON)
   330  espresso hostname   cbpark  PENDING       0:00        20:00      5  (PartitionNodeLimit)
@@ -129,7 +129,7 @@ srun sleep 60
 
 The above script prints `Hello, world! from hostname` 10 times (`--ntaskes=10`) to `output.txt` (`--output=output.txt`) using two nodes (`--nodes=2`) and 100 MB per CPU (`--mem-per-cpu=100`). The time limit has been set to be 10 minutes (`--time=10:00`). The user will receive an email notification when the job has been ended. Note that lines beginning with `#SBATCH` are not comments. `#SBATCH` is a prefix to set options. If you want to comment out the line, attach one more `#`, i.e., `##SBATCH`. `-l` option in the first line means that the shell acts as if it had been invoked as a login shell. To submit the script to the job scheduler, run
 
-``` plain
+``` no-highlight
 sbatch run.sh
 ```
 
@@ -137,7 +137,7 @@ See `man sbatch` or the [sbatch](https://slurm.schedmd.com/sbatch.html) page on 
 
 Sometimes, you want interactive operations for a job.
 
-```plain
+```no-highlight
 srun -n 10 -p espresso --pty bash
 ```
 

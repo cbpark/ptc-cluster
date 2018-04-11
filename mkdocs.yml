@@ -1,0 +1,11 @@
+site_name: The PTC cluster at IBS-CTPU
+pages:
+    - Home: index.md
+    - User Guide:
+        - specification.md
+        - job-scheduler.md
+        - modules.md
+        - nix.md
+    - Tips and tricks:
+        - tips-and-tricks/madgraph.md
+theme: readthedocs

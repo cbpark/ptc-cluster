@@ -1,0 +1,54 @@
+# Specification and SSH connection
+
+The PTC cluster consists of 1 **master node** and 21 **compute nodes** now. There is no login server and the SSH connection to `ptc.ibs.re.kr` directs to the master node. All the machines are in the data center located on the ground floor of the experiment building in the IBS main site.
+
+## Hardware
+
+### CPU and memory
+
+The master node has 1.6 GHz 6-core Intel Xeon CPU and 16 GB memory with 32 GB swap space. Note that it is not intended for hard computations or tasks, but for distributing and logging computing jobs to compute nodes. In most cases, you will run commands at the master node and the real computations will be performed by the compute node.
+
+Each compute node has a number of CPU cores: 24 to 72 cores with clock speeds of 2.2 GHz to 2.6 GHz. The total accumulated number of CPU cores of all the compute node is 952. The hyper-threading of CPU is disabled for all nodes. Each node has more than 128 GB memory.
+
+### Storage
+
+The size of disk partition for the home directory is 22 TB. Moreover, 18 TB and 34 TB storage disks are attached and shared via the local network. They are mounted as `/data` and `/bigdata`, respectively. The disk space will be available upon request of the user. Due to a technical reason, `/bigdata` is not mounted on the compute nodes.
+
+Currently, the disk quota has not been set.
+
+## Software
+
+The operating system of all the nodes is [CentOS](https://www.centos.org/) 7.4 with
+
+* [coreutils](https://www.gnu.org/software/coreutils/coreutils.html) 8.22,
+* [binutils](http://sources.redhat.com/binutils) 2.25.1,
+* [GCC](https://gcc.gnu.org/) 4.8.5,
+* [GNU C Library](https://www.gnu.org/software/libc/) 2.17,
+* [Python](http://python.org/) 2.7.5,
+* [Perl](http://www.perl.org/) 5.16.3.
+
+You can list the installed packages by running:
+
+``` plain
+yum list installed
+```
+
+The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://home.thep.lu.se/Pythia/) are provided through [Environment Modules](http://modules.sourceforge.net/). See the page of [Environment modules](modules.md). Note that Mathematica is not installed and it will never be. We have a dedicated workstation server for that. And, the Fortran 77 (`g77`) compiler is not supported any longer.
+
+## SSH connection
+
+Users can connect to the master node via SSH with port 22:
+
+``` plain
+ssh userid@ptc.ibs.re.kr
+```
+
+If a graphical user interface is necessary, it can be achieved using X11 forwarding.
+
+``` plain
+ssh -X userid@ptc.ibs.re.kr
+```
+
+The machines assigned an IP address of the external network of the IBS building, starting with 10.10.24, can directly connect to the server. Meanwhile, the laptops or PCs using the wireless network (eduroam) in the IBS building as well as user's home network cannot connect directly without SSL VPN. The IT team of the IBS headquarter will provide the SSL VPN client for Linux, macOS, and Windows OS.
+
+Note that the SSH connection from the master node to compute nodes are not allowed unless there are active jobs on the nodes. See the `srun` command of the [job scheduler](job-scheduler.md).

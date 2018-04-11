@@ -1,4 +1,7 @@
 site_name: The PTC cluster at IBS-CTPU
+site_url: https://github.com/cbpark/ptc-cluster
+repo_url: https://github.com/cbpark/ptc-cluster
+
 pages:
     - Home: index.md
     - User Guide:
@@ -8,4 +11,5 @@ pages:
         - nix.md
     - Tips and tricks:
         - tips-and-tricks/madgraph.md
+
 theme: readthedocs

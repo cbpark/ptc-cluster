@@ -1,6 +1,8 @@
 site_name: The PTC cluster at IBS-CTPU
 site_url: https://github.com/cbpark/ptc-cluster
-repo_url: https://github.com/cbpark/ptc-cluster
+site_description: User's guide to the PTC cluster at IBS-CTPU
+repo_url: https://github.com/cbpark/ptc-cluster/
+site_author: Chan Beom Park
 
 pages:
     - Home: index.md

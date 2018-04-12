@@ -64,3 +64,5 @@ ssh -X userid@ptc.ibs.re.kr
 The machines assigned an IP address of the external network of the IBS building, starting with 10.10.24, can directly connect to the server. Meanwhile, the laptops or PCs using the wireless network (eduroam) in the IBS building as well as user's home network cannot connect directly without SSL VPN. The IT team of the IBS headquarter will provide the SSL VPN client for Linux, macOS, and Windows OS.
 
 The SSH connection from the master node to compute nodes are not allowed unless there are active jobs on the nodes. See the `srun` command of the [job scheduler](job-scheduler.md).
+
+Files can be transferred to the server by using `sftp`, `scp`, or `rsync`.

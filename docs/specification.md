@@ -2,6 +2,10 @@
 
 The PTC cluster consists of 1 **master node** and 21 **compute nodes** now. There is no login server and the SSH connection to `ptc.ibs.re.kr` directs to the master node. All the machines are in the data center located on the ground floor of the experiment building in the IBS main site.
 
+| ![xkcd - Datacenter scale](https://imgs.xkcd.com/comics/datacenter_scale.png) |
+| :--: |
+| [xkcd](https://xkcd.com/), [*Datacenter Scale*](https://xkcd.com/1737/) |
+
 ## Hardware
 
 ### CPU and memory

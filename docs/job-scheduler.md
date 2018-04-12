@@ -165,6 +165,10 @@ will put your command prompt to a compute node. This is similar to the `qrsh` co
 
 ## Deadly commands
 
+| ![xkcd - Admin Mourning](https://imgs.xkcd.com/comics/admin_mourning.png) |
+| :--: |
+| [xkcd](https://xkcd.com/), [*Admin Mourning*](https://xkcd.com/686/) |
+
 * `nohup`
 
 You might have heard of the `nohup` command, and moreover, might love to use it. It makes a command ignoring hangup signals, for instance, when you want to have the command running even after you close the terminal. It would never be harmful if you're using it on your standalone machine. However, all the tasks running in the cluster should be recognized by the job scheduler since the job scheduler will allocate resources and gracefully close the tasks. The `nohup` command sometimes deceives the job scheduler and keeps the processes running in the background even after the submitted job has been completed. The node can eventually be frozen due to fulling up of resources such as memory and disk space. Do not use `nohup` in the cluster.

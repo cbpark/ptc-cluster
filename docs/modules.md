@@ -2,6 +2,10 @@
 
 The physics softwares and common libraries such as [GNU Scientific Library](https://www.gnu.org/software/gsl/) and [Boost](https://www.boost.org/) are provided through the [Environment Modules](http://modules.sourceforge.net/) system, or modules for short. The modules are regularly updated and maintained by the system administrator.
 
+| ![xkcd - Compiling](https://imgs.xkcd.com/comics/compiling.png) |
+| :--: |
+| [xkcd](https://xkcd.com/), [*Compiling*](https://xkcd.com/303/) |
+
 The command `module avail` shows all the available modules.
 
 ``` no-highlight

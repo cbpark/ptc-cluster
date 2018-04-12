@@ -162,7 +162,7 @@ Sometimes, you want interactive operations for a job.
 srun -n 10 -p espresso --pty bash
 ```
 
-will put your command prompt to a compute node. This is similar to the `qrsh` command of SGE. You can return back to the master node by the `exit` command. If you're using another shell such as Z shell, set `--pty zsh`.
+will put your command prompt to a compute node. This is similar to the `qrsh` command of SGE. You can return back to the master node by the `exit` command. If you're using another shell such as [Zsh](https://www.zsh.org/), set `--pty zsh`.
 
 ## Deadly commands
 

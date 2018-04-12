@@ -151,7 +151,7 @@ x,y in [-2,2] and n from 0 to 9
 Average Error = 1.064988e-13
 ```
 
-Users of another shell like Z shell must initialize the module function before running `module`. See files in `$MODULESHOME/init`. For example, if you're using Z shell, the script in the above should be
+Users of another shell like Zsh must initialize the module function before running `module`. See files in `$MODULESHOME/init`. For example, if you're using Z shell, the script in the above should be
 
 ``` bash
 #! /bin/zsh -l

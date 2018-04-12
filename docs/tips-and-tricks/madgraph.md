@@ -243,11 +243,11 @@ and it's done. `squeue` shows that our job is running.
 ``` no-highlight
 $ squeue
 JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
-  540 longlunch ttbar_mg   cbpark  RUNNING       1:21   2:00:00     12 compute-0-[0-11]
+  698 longlunch ttbar_mg   cbpark  RUNNING       5:21   2:00:00      1 compute-0-0
 ```
 
-Since the standard output is written to `ttbar_mg5_output.log` (`#SBATCH --output=ttbar_mg5_output.log`), we can check the messages from the Madgraph while running.
+Since the standard output is written to `ttbar_mg5_batch_output.log` (`#SBATCH --output=ttbar_mg5_batch_output.log`), we can check the messages from the Madgraph while running.
 
 ``` no-highlight
-tail -f ttbar_mg5_output.log
+tail -f ttbar_mg5_batch_output.log
 ```

@@ -207,26 +207,20 @@ If we do not exit from the compute node, it will automatically be killed when th
 
 The interactive execution would be convenient when one wants to test a model or do a pilot research. But if we're going to produce a large number of event samples, the batch processing will be much easier and efficient.
 
-At first, load the necessary modules:
-
-``` no-highlight
-module load gnu7 MG5aMC_PY8_interface collier delphes
-```
-
-Then, we move to the MadGraph directory and create a script named `run_mg5_slurm.sh` (the name is arbitrary, of course) for batch processing as follows.
+At first, we modify `input/mg5_configuration.txt` as in the above. Then, we move to the MadGraph directory and create a script named `run_mg5_slurm.sh` (the name is arbitrary, of course) for batch processing as follows.
 
 ``` bash
 #! /bin/bash -l
 #
-#SBATCH --job-name=ttbar_mg5
-#SBATCH --output=ttbar_mg5_output.log
-#
+#SBATCH --job-name=ttbar_mg5_batch
+#SBATCH --output=ttbar_mg5_batch_output.log
 #SBATCH --partition=longlunch
-#SBATCH --nodes=12
 
-srun ./bin/mg5_aMC <<EOF
+module load gnu7 MG5aMC_PY8_interface collier delphes
+
+./bin/mg5_aMC <<EOF
 generate p p > t t~
-output ttbar
+output ttbar_batch
 launch
   shower=Pythia8
   detector=Delphes

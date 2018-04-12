@@ -167,7 +167,7 @@ Users of another shell like Z shell must initialize the module function before r
 
 . $MODULESHOME/init/zsh
 module load root
-srun root -b -q $ROOTSYS/tutorials/math/binomial.C
+root -b -q $ROOTSYS/tutorials/math/binomial.C
 ```
 
 Notice `/bin/zsh` in the first line and `. $MODULESHOME/init/zsh`.

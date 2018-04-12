@@ -151,6 +151,27 @@ x,y in [-2,2] and n from 0 to 9
 Average Error = 1.064988e-13
 ```
 
+Users of another shell like Z shell must initialize the module function before running `module`. See files in `$MODULESHOME/init`. For example, if you're using Z shell, the script in the above should be
+
+``` bash
+#! /bin/zsh -l
+#
+#SBATCH --job-name=test
+#SBATCH --output=root_output.txt
+#
+#SBATCH --partition=espresso
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --mem-per-cpu=100
+#SBATCH --time=10:00
+
+. $MODULESHOME/init/zsh
+module load root
+srun root -b -q $ROOTSYS/tutorials/math/binomial.C
+```
+
+Notice `/bin/zsh` in the first line and `. $MODULESHOME/init/zsh`.
+
 `module unload` will unload the module.
 
 ``` no-highlight

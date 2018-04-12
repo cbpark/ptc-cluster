@@ -109,7 +109,7 @@ This shows that `ROOTSYS` environment variable has been added. For a script to u
 #SBATCH --time=10:00
 
 module load root
-srun root -b -q $ROOTSYS/tutorials/math/binomial.C
+root -b -q $ROOTSYS/tutorials/math/binomial.C
 ```
 
 running `sbatch run.sh` (`run.sh` is the name of the script given above) gives us

@@ -14,7 +14,7 @@ The master node has 1.6 GHz 6-core Intel Xeon CPU and 16 GB memory with 32 GB sw
 
 Each compute node has quite a number of CPU cores, 24 to 72 cores with clock speeds of 2.2 GHz to 2.6 GHz. The total accumulated number of CPU cores of all the compute node is 952. The hyper-threading of CPU is disabled for all nodes. Each node has more than 128 GB memory.
 
-To see the detailed information of compute nodes, run
+To see the detailed information of the compute nodes, run
 
 ``` no-highlight
 scontrol show nodes
@@ -24,7 +24,7 @@ scontrol show nodes
 
 The size of disk partition for the home directory is 22 TB. Moreover, 18 TB and 34 TB storage disks are attached and shared via the local network. They are mounted as `/data` and `/bigdata`, respectively. The disk space will be available upon request of the user. Due to a technical reason, `/bigdata` is not mounted on the compute nodes.
 
-Currently, the disk quota has not been set.
+Currently, the disk quota has not been set. Use `/data` or `/bigdata` if you need a space for storing data for a long time.
 
 ## Software
 
@@ -43,7 +43,7 @@ You can list the installed packages by running:
 yum list installed
 ```
 
-The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://home.thep.lu.se/Pythia/) are provided through [Environment Modules](http://modules.sourceforge.net/). See the page of [Environment modules](modules.md).
+The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://home.thep.lu.se/Pythia/) are provided through [Environment Modules](http://modules.sourceforge.net/). See the page of [Environment modules](modules.md). In particular, the more recent GCC's are available using modules.
 
 Note that Mathematica is not installed and it will never be since we have a dedicated workstation server for that. And, the Fortran 77 compilers such as `g77` are not supported any longer. Update your codes or contact the developer so that they can be compiled by modern Fortran compilers. The Intel C++ and Fortran compilers are not installed as they are not free software and our budget is limited.
 

@@ -1,6 +1,6 @@
 # Job scheduler
 
-A job scheduler or workload automation is necessary for efficient handling of the computing resources. It is the most important and essential application in order to run your jobs on the compute nodes, so every user must know how to use it. Tasks without passing through the job scheduler will be killed without notice.
+A job scheduler or workload automation is necessary for efficient handling of the computing resources. It is essential and the most important application in order to run your jobs on the compute nodes, so every user must know how to use it. Tasks without passing through the job scheduler will be killed without notice.
 
 As a job scheduler of the PTC cluster, [Slurm](https://slurm.schedmd.com/) is employed. The installed version is 17.02.9. If you are new to Slurm, the official [Quick Start User Guide](https://slurm.schedmd.com/quickstart.html) is the best place to start learning about it. Here is a basic instruction for using Slurm in the PTC cluster.
 
@@ -8,7 +8,7 @@ The users of the old PTC cluster system would be more familiar with Sun Grid Eng
 
 ## Partition
 
-The partitions group nodes into logical sets. Each partition has its own job size limit, job time limit, and user group permitted to use it. It is sometimes called job queues. The `sinfo` command reports the state of partitions.
+The partitions group compute nodes into logical sets. Each partition has its own job size limit, job time limit, and user group permitted to use it. It is sometimes called _job queues_. The `sinfo` command reports the state of partitions.
 
 ``` no-highlight
 $ sinfo
@@ -34,7 +34,7 @@ PartitionName=espresso
    DefMemPerCPU=2000 MaxMemPerNode=20000
 ```
 
-Note again `MaxNodes=2 MaxTime=00:20:00`. `AllowGroups=ALL` means that any user can run jobs in the partition.
+Note again `MaxNodes=2 MaxTime=00:20:00`. `AllowGroups=ALL` means that any user can run jobs in the partition. `scontrol show partitions` shows the detailed information of all the partitions that you can submit jobs.
 
 A new user can use only the `espresso` partition. The other partitions with a longer time limit and larger job size will be available when the user is qualified to have enough knowledge and skill to use the cluster. It recommended that doing test and exercise in the `espresso` partition repeatedly before using the other partitions.
 
@@ -141,6 +141,7 @@ Before submitting the script to the job scheduler, it's advisable to validate th
 $ sbatch --test-only run.sh
 sbatch: Job 564 to start at 2018-04-12 00:20:54 using 80 processors on compute-0-[0-1]
 ```
+
 To actually submit the script to the job scheduler, run
 
 ``` no-highlight
@@ -171,4 +172,4 @@ will put your command prompt to a compute node. This is similar to the `qrsh` co
 
 * `nohup`
 
-You might have heard of the `nohup` command, and moreover, might love to use it. It makes a command ignoring hangup signals, for instance, when you want to have the command running even after you close the terminal. It would never be harmful if you're using it on your standalone machine. However, all the tasks running in the cluster should be recognized by the job scheduler since the job scheduler will allocate resources and gracefully close the tasks. The `nohup` command sometimes deceives the job scheduler and keeps the processes running in the background even after the submitted job has been completed. The node can eventually be frozen due to fulling up of resources such as memory and disk space. Do not use `nohup` in the cluster.
+You might have heard of the `nohup` command, and moreover, might love to use it. It makes a command ignoring hangup signals, for instance, when you want to have the command running even after you close the terminal. It would never be harmful if you're using it on your standalone machine. However, all the tasks running in the cluster should be recognized by the job scheduler since the job scheduler will allocate resources and gracefully close the tasks. The `nohup` command sometimes deceives the job scheduler and keeps the processes running in the background even after the submitted job had been completed. The node can eventually be frozen due to fulling up of resources such as memory and disk space. Do not use `nohup` in the cluster.

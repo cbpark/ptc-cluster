@@ -1,6 +1,6 @@
 # Job scheduler
 
-A job scheduler or workload automation is necessary for efficient handling of the computing resources. It is the most important application in order to run your jobs on the compute nodes, so every user must know how to use it. Jobs without passing through the job scheduler will be killed without notice.
+A job scheduler or workload automation is necessary for efficient handling of the computing resources. It is the most important and essential application in order to run your jobs on the compute nodes, so every user must know how to use it. Tasks without passing through the job scheduler will be killed without notice.
 
 As a job scheduler of the PTC cluster, [Slurm](https://slurm.schedmd.com/) is employed. The installed version is 17.02.9. If you are new to Slurm, the official [Quick Start User Guide](https://slurm.schedmd.com/quickstart.html) is the best place to start learning about it. Here is a basic instruction for using Slurm in the PTC cluster.
 

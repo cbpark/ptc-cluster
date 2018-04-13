@@ -78,3 +78,5 @@ IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 ```
 
 when connecting to the server, remove the line beginning with `ptc.ibs.re.kr` in `.ssh/known_hosts` in your home directory.
+
+User's password can be changed by running the `passwd` command.

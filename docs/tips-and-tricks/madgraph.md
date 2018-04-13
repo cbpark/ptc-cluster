@@ -1,12 +1,12 @@
 # MadGraph
 
-Since there are a lot of questions and requests in regard to run [MadGraph 5](https://launchpad.net/mg5amcnlo) (MadGraph5_aMC@NLO) in the cluster, the instruction is given here. Here the version of MadGraph is 2.6.1.
+Since there are a lot of questions and requests in regard to run [MadGraph 5](https://launchpad.net/mg5amcnlo) (MadGraph5_aMC@NLO) in the cluster, the instruction is given here. The version of MadGraph used here is 2.6.1.
 
 There are two ways to run MadGraph, _interactive execution_ and _batch processing_. Both are possible to run it in the cluster.
 
 ## Interactive execution
 
-Recall that running hard computations on the mater node is not allowed. Still, We can get an interactive command interface in the compute node by `srun`. Before going there, we need to load some [modules](../modules.md) to use MadGraph.
+Recall that running hard computations on the master node is not allowed. Still, We can get an interactive command interface in the compute node by `srun`. Before going there, we need to load some [modules](../modules.md) to use MadGraph.
 
 ``` no-highlight
 module load gnu7 MG5aMC_PY8_interface collier delphes

@@ -67,3 +67,14 @@ The machines assigned an IP address of the external network of the IBS building,
 The SSH connection from the master node to compute nodes are not allowed unless there are active jobs on the nodes. See the `srun` command of the [job scheduler](job-scheduler.md).
 
 Files can be transferred to the server by using `sftp`, `scp`, or `rsync`.
+
+If you see a message like
+
+``` no-highlight
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+```
+
+when connecting to the server, remove the line beginning with `ptc.ibs.re.kr` in `.ssh/known_hosts` in your home directory.

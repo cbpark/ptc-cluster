@@ -4,7 +4,9 @@ A job scheduler or workload automation is necessary for efficient handling of th
 
 As a job scheduler of the PTC cluster, [Slurm](https://slurm.schedmd.com/) is employed. The installed version is 17.02.9. If you are new to Slurm, the official [Quick Start User Guide](https://slurm.schedmd.com/quickstart.html) is the best place to start learning about it. Here is a basic instruction for using Slurm in the PTC cluster.
 
-The users of the old PTC cluster system might be more familiar with Sun Grid Engine (SGE). Please refer to [SGE to SLURM conversion](https://srcc.stanford.edu/sge-slurm-conversion). A summary of commands and options is given [here](https://slurm.schedmd.com/pdfs/summary.pdf).
+The users of the old PTC cluster system might be familiar with Sun Grid Engine (SGE). Please refer to [SGE to SLURM conversion](https://srcc.stanford.edu/sge-slurm-conversion) and modify the scripts.
+
+A summary of commands and options of Slurm is given [here](https://slurm.schedmd.com/pdfs/summary.pdf).
 
 ## Partition
 
@@ -16,7 +18,7 @@ PARTITION    AVAIL  TIMELIMIT JOB_SIZE MAX_CPUS_PER_NODE NODES(A/I/O/T)    CPUS(
 espresso*       up      20:00      1-2                10      0/21/0/21      0/952/0/952
 ```
 
-The name of the partition shown in the above is `espresso`, which is up and running. `*` means that it is the default partition. The `espresso` partition will be used if you do not specify a partition to use. The job time limit (`TIMELIMIT`) is set to be 20 minutes. Jobs running beyond the time limit will be automatically killed. A job submitted to the `espresso` partition can use two nodes at most (`JOB_SIZE`), and the maximum number of CPUs per node (`MAX_CPUS_PER_NODE`) is 10. Thus, the job in the `espresso` partition can use concurrently up to 2 * 10 = 20 CPUs. The last two fields in the above show the number of nodes by a state in the format "allocated/idle/other/total" (A/I/O/T) and the number of CPUs in the same format.
+The name of the partition shown in the above is `espresso`, which is up and running. `*` denotes that it is the default partition. The `espresso` partition will be used if you do not specify a partition to use. The job time limit (`TIMELIMIT`) is set to be 20 minutes. Jobs running beyond the time limit will be automatically killed. A job submitted to the `espresso` partition can use two nodes at most (`JOB_SIZE`), and the maximum number of CPUs per node (`MAX_CPUS_PER_NODE`) is 10. Thus, the job in the `espresso` partition can use concurrently up to 2 * 10 = 20 CPUs. The last two fields in the above show the number of nodes by a state in the format "allocated/idle/other/total" (A/I/O/T) and the number of CPUs in the same format.
 
 Another useful command is `scontrol show partition`.
 

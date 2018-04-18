@@ -160,11 +160,32 @@ scontrol requeue <jobid>
 
 Sometimes, you want interactive operations for a job.
 
-```no-highlight
+``` no-highlight
 srun -n 10 -p espresso --pty bash
 ```
 
 will put your command prompt to a compute node. This is similar to the `qrsh` command of SGE. You can return back to the master node by the `exit` command. If you're using another shell such as [Zsh](https://www.zsh.org/), add `--pty zsh` instead of `--pty bash`.
+
+### OpenMP
+
+[OpenMP](http://www.openmp.org/) supports multiprocessing programming by implementing multithreading which runs concurrently with the runtime environment allocating threads to different processors. (Do not confuse it with [Open MPI](https://www.open-mpi.org/).) Note that you should make sure that all the CPU cores you request are on the same node. Below is an example script using OpenMP.
+
+``` bash
+#! /bin/bash -l
+#
+#SBATCH --job-name=omp_test
+#SBATCH --output=omp_test.log
+#
+#SBATCH --partition=espresso
+#SBATCH --nodes=1            # number of nodes
+#SBATCH --cpus-per-task=8    # number of threads
+#SBATCH --mem-per-cpu=100    # memory per cpu
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+srun -c $SLURM_CPUS_PER_TASK ./MYPROGRAM
+```
+
+Here `MYPROGRAM` is the executable you will run on the compute node. The most important part is `--nodes=1` and `--cpus-per-task=8`. The latter tells the job scheduler how many threads you intend to run with. Unless the number of nodes is 1, the job could be distributed over many nodes, leading to poor performance.
 
 ## Deadly commands
 

@@ -40,12 +40,12 @@ PartitionName=longlunch
    AllowGroups=usercl1 AllowAccounts=ALL AllowQos=ALL
    AllocNodes=ALL Default=NO QoS=N/A
    DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO GraceTime=0 Hidden=NO
-   MaxNodes=12 MaxTime=02:00:00 MinNodes=1 LLN=NO MaxCPUsPerNode=32
+   MaxNodes=12 MaxTime=02:00:00 MinNodes=1 LLN=NO MaxCPUsPerNode=40
    Nodes=compute-0-[0-20]
-   PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=FORCE:4
+   PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO
    OverTimeLimit=NONE PreemptMode=OFF
    State=UP TotalCPUs=952 TotalNodes=21 SelectTypeParameters=NONE
-   DefMemPerCPU=2000 MaxMemPerNode=64000
+   DefMemPerCPU=2000 MaxMemPerNode=UNLIMITED
 ```
 
 As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 12 nodes for a job and the time limit is 2 hours (`MaxNodes=12 MaxTime=02:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
@@ -68,7 +68,7 @@ run_mode = 1
 #!  And size of the cluster (some part of the code can adapt splitting accordingly)
 cluster_type = slurm
 cluster_queue = longlunch
-cluster_size = 12
+cluster_size = 100
 
 delphes_path = /opt/ohpc/pub/libs/gnu7/delphes/3.4.1/bin
 
@@ -118,10 +118,10 @@ run_mode = 1
 
 cluster_type = slurm
 cluster_queue = longlunch
-cluster_size = 12
+cluster_size = 100
 ```
 
-Here, we choose the cluster running mode (`run_mode = 1`) in the Slurm workload manager (`cluster_type = slurm`). The job will be submitted to the `longlunch` partition (`cluster_queue = longlunch`) using up to 12 nodes (`cluster_size = 12`). Recall that the maximum allowed number of nodes in `longlunch` partition is 12 for a job. In practice, MadGraph will choose the number of nodes to use within the specified `cluster_size`.
+Here, we choose the cluster running mode (`run_mode = 1`) in the Slurm workload manager (`cluster_type = slurm`). The job will be submitted to the `longlunch` partition (`cluster_queue = longlunch`) using up to 100 cores (`cluster_size = 100`). Recall that the maximum allowed number of nodes in `longlunch` partition is 480 = 12 * 40 for a job. In practice, MadGraph will choose the number of nodes to use within the specified `cluster_size`.
 
 After modifying the other fields if necessary, we run `mg5_aMC`.
 

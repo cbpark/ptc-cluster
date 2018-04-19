@@ -80,3 +80,7 @@ IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 when connecting to the server, remove the line beginning with `ptc.ibs.re.kr` in `.ssh/known_hosts` in your home directory.
 
 User's password can be changed by running the `passwd` command.
+
+## What happens to CROWS?
+
+The CROWS (or ctpu-crows) cluster is still running with CentOS 6.9 and Sun Grid Engine (SGE), and there is no definite plan for upgrading it currently. It is because of the need for legacy software or that some people are feeling too accustomed to the SGE cluster system so don't like a change. The users of the CROWS cluster can attempt to use the PTC cluster upon request and approval of the system administrator. (The administrator will not help migrate or update user's files.) Eventually, the CROWS cluster will be upgraded, and then be merged with the PTC cluster.

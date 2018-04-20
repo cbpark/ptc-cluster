@@ -46,7 +46,7 @@ yum list installed
 
 The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://home.thep.lu.se/Pythia/) are provided through [Environment Modules](http://modules.sourceforge.net/). See the page of [Environment modules](modules.md). The more recent GCC's are also available using modules.
 
-Note that Mathematica is not installed and it will never be since we have a dedicated workstation server for that. And, the Fortran 77 compilers such as `g77` are not supported any longer. Update your codes or contact the developer so that they can be compiled by modern Fortran compilers. The Intel C++ and Fortran compilers are not installed as they are not free software and our budget is limited.
+Note that Mathematica is not installed and it will never be since we have a dedicated workstation server for that. And, the Fortran 77 compilers such as `g77` are not supported any longer. (The GNU Fortran compiler, `gfortran`, is available since it's part of GCC.) Update your codes or contact the developer so that they can be compiled by modern Fortran compilers. The Intel C++ and Fortran compilers are not installed as they are not free software and our budget is limited.
 
 ## SSH connection
 

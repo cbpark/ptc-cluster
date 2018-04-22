@@ -36,7 +36,7 @@ The operating system of all the nodes is [CentOS](https://www.centos.org/) 7.4, 
 * [GNU C Library](https://www.gnu.org/software/libc/) (glibc) 2.17,
 * [Python](http://python.org/) 2.7.5,
 * [Perl](http://www.perl.org/) 5.16.3,
-* [Gnu Emacs](https://www.gnu.org/software/emacs/) 24.3.1.
+* [GNU Emacs](https://www.gnu.org/software/emacs/) 24.3.1.
 
 You can list the installed packages by running:
 

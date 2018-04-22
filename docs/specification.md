@@ -32,8 +32,8 @@ The operating system of all the nodes is [CentOS](https://www.centos.org/) 7.4, 
 
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html) 8.22,
 * [binutils](http://sources.redhat.com/binutils) 2.25.1,
-* [GCC](https://gcc.gnu.org/) 4.8.5,
-* [GNU C Library](https://www.gnu.org/software/libc/) 2.17,
+* [GNU Compiler Collection](https://gcc.gnu.org/) (gcc) 4.8.5,
+* [GNU C Library](https://www.gnu.org/software/libc/) (glibc) 2.17,
 * [Python](http://python.org/) 2.7.5,
 * [Perl](http://www.perl.org/) 5.16.3,
 * [Gnu Emacs](https://www.gnu.org/software/emacs/) 24.3.1.
@@ -43,6 +43,8 @@ You can list the installed packages by running:
 ``` no-highlight
 yum list installed
 ```
+
+`yum info` will show the detailed information of the package, e.g., `yum info gcc`.
 
 The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://home.thep.lu.se/Pythia/) are provided through [Environment Modules](http://modules.sourceforge.net/). See the page of [Environment modules](modules.md). The more recent GCC's are also available using modules.
 

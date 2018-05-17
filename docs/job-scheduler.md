@@ -168,6 +168,84 @@ srun -n 10 -p espresso --pty bash
 
 will put your command prompt to a compute node. This is similar to the `qrsh` command of SGE. You can return back to the master node by the `exit` command. If you're using another shell such as [Zsh](https://www.zsh.org/), add `--pty zsh` instead of `--pty bash`.
 
+### Selecting specific nodes
+
+`scontrol` can show the detailed information of compute nodes.
+
+``` no-highlight
+$ scontrol show nodes
+NodeName=compute-0-0 Arch=x86_64 CoresPerSocket=20
+   CPUAlloc=0 CPUErr=0 CPUTot=40 CPULoad=0.05
+   AvailableFeatures=(null)
+   ActiveFeatures=(null)
+   Gres=(null)
+   NodeAddr=compute-0-0 NodeHostName=compute-0-0 Version=17.02
+   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=190152 Sockets=2 Boards=1
+   MemSpecLimit=4000
+   State=IDLE ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
+   Partitions=espresso,microcentury,longlunch,workday,testmatch,nextweek,nextmonth
+   BootTime=2018-05-16 15:25:34 SlurmdStartTime=2018-05-17 14:23:17
+   CfgTRES=cpu=40,mem=193336M
+   AllocTRES=
+   CapWatts=n/a
+   CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
+   ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
+
+
+NodeName=compute-0-1 Arch=x86_64 CoresPerSocket=20
+   CPUAlloc=0 CPUErr=0 CPUTot=40 CPULoad=0.07
+   AvailableFeatures=(null)
+   ActiveFeatures=(null)
+   Gres=(null)
+   NodeAddr=compute-0-1 NodeHostName=compute-0-1 Version=17.02
+   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=190159 Sockets=2 Boards=1
+   MemSpecLimit=4000
+   State=IDLE ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
+   Partitions=espresso,microcentury,longlunch,workday,testmatch,nextweek,nextmonth
+   BootTime=2018-05-16 15:30:23 SlurmdStartTime=2018-05-17 14:23:17
+   CfgTRES=cpu=40,mem=193336M
+   AllocTRES=
+   CapWatts=n/a
+   CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
+   ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
+
+(...)
+```
+
+One can check the list of nodes assigned to the partition by running `\sinfo`.
+
+``` no-highlight
+$ \sinfo
+PARTITION    AVAIL  TIMELIMIT  NODES  STATE NODELIST
+espresso*       up      20:00     21   idle compute-0-[0-20]
+```
+
+`NODELIST` shows that the `espresso` partition has 21 nodes from `compute-0-0` to `compute-0-20`.
+
+The job scheduler will automatically select the compute nodes when a job has been submitted by using `sbatch` or `srun`. See the output of `squeue` to check the list of nodes allocated to the job. On the other hand, the user may select specific compute nodes by adding options with `-w` or `--nodelist` to the `sbatch` or `srun` commands. For instance,
+
+``` no-highlight
+$ srun -p espresso -w 'compute-0-[1-2]' /bin/hostname
+compute-0-2
+compute-0-1
+```
+
+The above run selects the `espresso` partition and the `compute-0-1` and `compute-0-2` nodes. Similarly,
+
+``` no-highlight
+$ sbatch -p espresso -w 'compute-0-[1,3]' run.sh
+Submitted batch job 1076
+```
+
+will submit `run.sh` to the `espresso` partition and `compute-0-1` and `compute-0-3` nodes. Another example is to jump into an interactive environment in a specific compute node.
+
+``` no-highlight
+$ srun -p espresso -n 10 -w 'compute-0-4' --pty /bin/bash
+[cbpark@compute-0-4 ~]$
+```
+
+In the above, `-n 10` means that 10 CPU cores will be allocated.
+
 ### OpenMP
 
 [OpenMP](http://www.openmp.org/) supports multiprocessing programming by implementing multithreading which runs concurrently with the runtime environment allocating threads to different processors. (Do not confuse it with [Open MPI](https://www.open-mpi.org/).) Note that you should make sure that all the CPU cores you request are on the same node. Below is an example script using OpenMP.

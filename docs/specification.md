@@ -24,6 +24,21 @@ scontrol show nodes
 
 The size of disk partition for the home directory is 22 TB. Moreover, 18 TB and 34 TB storage disks are attached and shared via the local network. They are mounted as `/data` and `/bigdata`, respectively. The disk space will be available upon request of the user. Due to a technical reason, `/bigdata` is not mounted on the compute nodes.
 
+``` no-highlight
+$ lsblk
+NAME                MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                   8:0    0  931G  0 disk
+├─sda1                8:1    0    1G  0 part /boot
+└─sda2                8:2    0  930G  0 part
+  ├─centos_ptc-root 253:0    0  898G  0 lvm  /
+  └─centos_ptc-swap 253:1    0   32G  0 lvm  [SWAP]
+sdb                   8:16   0 21.9T  0 disk /home
+sdc                   8:32   0 17.3T  0 disk /data
+sdd                   8:48   0  931G  0 disk /nix
+sde                   8:64   0 33.5T  0 disk /bigdata
+sr0                  11:0    1 1024M  0 rom
+```
+
 Currently, the disk quota has not been set. Use `/data` or `/bigdata` if you need a space for storing data for a long time.
 
 ## Software

@@ -46,7 +46,7 @@ Currently, the disk quota has not been set. Use `/data` or `/bigdata` if you nee
 The operating system of all the nodes is [CentOS](https://www.centos.org/) 7.4, and the installed softwares include
 
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html) 8.22,
-* [binutils](http://sources.redhat.com/binutils) 2.25.1,
+* [binutils](http://sources.redhat.com/binutils) 2.27,
 * [GNU Compiler Collection](https://gcc.gnu.org/) (gcc) 4.8.5,
 * [GNU C Library](https://www.gnu.org/software/libc/) (glibc) 2.17,
 * [Python](http://python.org/) 2.7.5,

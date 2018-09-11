@@ -48,7 +48,7 @@ PartitionName=longlunch
    DefMemPerCPU=2000 MaxMemPerNode=UNLIMITED
 ```
 
-As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 12 nodes for a job and the time limit is 2 hours (`MaxNodes=12 MaxTime=02:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
+As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 12 nodes for a job and the time limit is 3 hours (`MaxNodes=12 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
 
 Now we modify some fields of `input/mg5_configuration.txt`.
 
@@ -243,7 +243,7 @@ and it's done. `squeue` shows that our job is running.
 ``` no-highlight
 $ squeue
 JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
-  698 longlunch ttbar_mg   cbpark  RUNNING       5:21   2:00:00      1 compute-0-0
+  698 longlunch ttbar_mg   cbpark  RUNNING       5:21   3:00:00      1 compute-0-21
 ```
 
 Since the standard output is written to `ttbar_mg5_batch_output.log` (`#SBATCH --output=ttbar_mg5_batch_output.log`), we can check the messages from the Madgraph while running.

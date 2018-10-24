@@ -6,7 +6,7 @@ site_author: Chan Beom Park
 
 extra_javascript: [docs.js]
 
-nav:
+pages:
     - Home: 'index.md'
     - User Guide:
         - 'Specification' : 'specification.md'

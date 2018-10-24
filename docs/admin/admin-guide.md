@@ -42,3 +42,11 @@ A useful command to force the synchronization is
 ``` no-highlight
 sudo pdsh -w 'compute-0-[0-22]' 'rm /tmp/.wwgetfiles_timestamp; SLEEPTIME=1 /warewulf/bin/wwgetfiles'
 ```
+
+## Slurm configurations
+
+The main configuration file for the Slurm workload manager is `/etc/slurm/slurm.conf`. The official website of Slurm provides the generator of the configuration file. See [Configuration Tool](https://slurm.schedmd.com/configurator.html). To see the available options, see the man page:
+
+``` no-highlight
+man slurm.conf
+```

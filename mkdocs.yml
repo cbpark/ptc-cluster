@@ -6,14 +6,16 @@ site_author: Chan Beom Park
 
 extra_javascript: [docs.js]
 
-pages:
-    - Home: index.md
+nav:
+    - Home: 'index.md'
     - User Guide:
-        - specification.md
-        - job-scheduler.md
-        - modules.md
-        - nix.md
+        - 'Specification' : 'specification.md'
+        - 'Job scheduler' : 'job-scheduler.md'
+        - 'Environment modules' : 'modules.md'
+        - 'Nix' : 'nix.md'
     - Tips and tricks:
-        - tips-and-tricks/madgraph.md
+        - 'MadGraph' : 'tips-and-tricks/madgraph.md'
+    - Admin:
+        - 'Administrator Guide' : 'admin/admin-guide.md'
 
 theme: readthedocs

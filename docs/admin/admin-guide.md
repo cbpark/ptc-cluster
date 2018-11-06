@@ -50,3 +50,48 @@ The main configuration file for the Slurm workload manager is `/etc/slurm/slurm.
 ``` no-highlight
 man slurm.conf
 ```
+
+## Rebooting a node
+
+Suppose that the name of the node to reboot is `compute-node`. Before rebooting the node, we must tell Slurm that the node will be down.
+
+``` no-highlight
+sudo scontrol update nodename='compute-node' state=down reason='reboot'
+```
+
+`sinfo` shows that the status of the node has been set to be `down`.
+
+``` no-highlight
+$ \sinfo -l
+PARTITION    AVAIL  TIMELIMIT   JOB_SIZE ROOT OVERSUBS     GROUPS  NODES       STATE NODELIST
+espresso*       up      20:00        1-2   no       NO        all      1        down compute-node
+```
+
+But, the node has not been rebooted yet.
+
+``` no-highlight
+$ sudo pdsh -w 'compute-node' uptime
+compute-node:  15:41:27 up 134 days,  4:26,  0 users,  load average: 0.00, 0.01, 0.05
+```
+
+We now reboot the node:
+
+``` no-highlight
+$ sudo pdsh -w 'compute-node' reboot
+compute-node: Connection to compute-node closed by remote host.
+$ sudo pdsh -w 'compute-node' uptime
+compute-node: ssh: connect to host compute-node: No route to host
+```
+
+If the node has been successfully rebooted, `uptime` will show an output like:
+
+``` no-highlight
+$ sudo pdsh -w 'compute-node' uptime
+compute-node:  15:45:15 up 1 min,  0 users,  load average: 0.22, 0.07, 0.03
+```
+
+The final step is to attach the node back to Slurm.
+
+``` no-highlight
+sudo scontrol update nodename='compute-node' state=resume
+```

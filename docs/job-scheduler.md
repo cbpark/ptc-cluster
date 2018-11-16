@@ -277,6 +277,24 @@ srun -c $SLURM_CPUS_PER_TASK ./MYPROGRAM
 
 Here `MYPROGRAM` is the executable you will run on the compute node. The most important part is `--nodes=1` and `--cpus-per-task=8`. The latter tells the job scheduler how many threads you intend to run with. Unless the number of nodes is 1, the job could be distributed over many nodes, leading to poor performance.
 
+### MPI
+
+[MPI](https://www.mpi-forum.org/) stands for the message passing interface, a communication protocol for programming parallel computers. Here is an example script for a job with 10 tasks using [Open MPI](https://www.open-mpi.org/).
+
+``` bash
+#!/bin/bash -l
+#
+#SBATCH --job-name=mpi_test
+#SBATCH --output=mpi_test.log
+#
+#SBATCH --partition=espresso
+#SBATCH --ntasks=10
+
+module load gnu7 openmpi
+
+srun --mpi=pmix ./MYPROGRAM
+```
+
 ## Deadly commands
 
 | ![xkcd - Admin Mourning](https://imgs.xkcd.com/comics/admin_mourning.png) |

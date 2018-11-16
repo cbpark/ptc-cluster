@@ -275,7 +275,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 srun -c $SLURM_CPUS_PER_TASK ./MYPROGRAM
 ```
 
-Here `MYPROGRAM` is the executable you will run on the compute node. The most important part is `--nodes=1` and `--cpus-per-task=8`. The latter tells the job scheduler how many threads you intend to run with. Unless the number of nodes is 1, the job could be distributed over many nodes, leading to poor performance.
+Here `MYPROGRAM` is the executable you will run on the compute node. The most important parts are `--nodes=1` and `--cpus-per-task=8`. The latter tells the job scheduler how many threads you intend to run with. Unless the number of nodes is 1, the job could be distributed over many nodes, leading to poor performance.
 
 ### MPI
 

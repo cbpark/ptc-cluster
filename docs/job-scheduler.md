@@ -237,14 +237,24 @@ $ sbatch -p espresso -w 'compute-0-[1,3]' run.sh
 Submitted batch job 1076
 ```
 
-will submit `run.sh` to the `espresso` partition and `compute-0-1` and `compute-0-3` nodes. Another example is to jump into an interactive environment in a specific compute node.
+will submit `run.sh` to the `espresso` partition in the `compute-0-1` and `compute-0-3` nodes.
+
+### Interactive sessions
+
+Another example is to jump into an interactive environment.
+
+``` no-highlight
+$ srun -p espresso -n 10 --pty /bin/bash
+[cbpark@compute-0-0 ~]$
+```
+
+In the above, `-n 10` means that 10 CPU cores will be allocated. A particular node can request by:
 
 ``` no-highlight
 $ srun -p espresso -n 10 -w 'compute-0-4' --pty /bin/bash
-[cbpark@compute-0-4 ~]$
+[cbpark@compute-0-4 ~]$ hostname
+compute-0-4
 ```
-
-In the above, `-n 10` means that 10 CPU cores will be allocated.
 
 ### OpenMP
 

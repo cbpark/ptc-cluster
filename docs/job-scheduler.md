@@ -135,7 +135,7 @@ srun echo 'Greetings from' $(/bin/hostname)
 srun sleep 60
 ```
 
-The above script prints `Hello, world! from hostname` 10 times (`--ntaskes=10`) to `output.txt` (`--output=output.txt`) using two nodes (`--nodes=2`) and 100 MB per CPU (`--mem-per-cpu=100`). The time limit has been set to be 10 minutes (`--time=10:00`). The user will receive an email notification when the job has been ended. Note that lines beginning with `#SBATCH` are not comments. `#SBATCH` is a prefix to set options. If you want to comment out the line, attach one more `#`, i.e., `##SBATCH`. `-l` option in the first line means that the shell acts as if it had been invoked as a login shell.
+The above script prints `Greetings from hostname` 10 times (`--ntaskes=10`) to `output.txt` (`--output=output.txt`) using two nodes (`--nodes=2`) and 100 MB per CPU (`--mem-per-cpu=100`). The time limit has been set to be 10 minutes (`--time=10:00`). The user will receive an email notification when the job has been ended. Note that lines beginning with `#SBATCH` are not comments. `#SBATCH` is a prefix to set options. If you want to comment out the line, attach one more `#`, i.e., `##SBATCH`. `-l` option in the first line means that the shell acts as if it had been invoked as a login shell.
 
 You'll get an email when the job is finished if you specified `--mail-type` and `--mail-user`.
 

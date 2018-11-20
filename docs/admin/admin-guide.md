@@ -190,7 +190,7 @@ sudo pdsh -w 'compute-0-[0-24]' systemctl restart slurmd
 sudo systemctl restart slurmctld.service
 ```
 
-If there is any error, check the systemd status and see the log message:
+If there is an error, check the systemd status and see the log message:
 
 ``` no-highlight
 systemctl status slurmctld.service

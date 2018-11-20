@@ -34,13 +34,13 @@ sudo wwsh file resync
 The synchronization might take several minutes. To check the status, run
 
 ``` no-highlight
-sudo pdsh -w 'compute-0-[0-22]' grep alice /etc/passwd
+sudo pdsh -w 'compute-0-[0-24]' grep alice /etc/passwd
 ```
 
 A useful command to force the synchronization is
 
 ``` no-highlight
-sudo pdsh -w 'compute-0-[0-22]' 'rm /tmp/.wwgetfiles_timestamp; SLEEPTIME=1 /warewulf/bin/wwgetfiles'
+sudo pdsh -w 'compute-0-[0-24]' 'rm /tmp/.wwgetfiles_timestamp; SLEEPTIME=1 /warewulf/bin/wwgetfiles'
 ```
 
 ## Slurm configurations
@@ -94,4 +94,105 @@ The final step is to attach the node back to Slurm.
 
 ``` no-highlight
 sudo scontrol update nodename='compute-node' state=resume
+```
+
+## Adding a compute node to Slurm
+
+Suppose that the name of the compute node to add is `compute-node-new`. At first, check whether the node is listed in [Warewulf](http://warewulf.lbl.gov/) and running well.
+
+``` no-highlight
+$ sudo wwsh node list 'compute-node-new'
+NAME                    GROUPS              IPADDR              HWADDR
+=================================================================================
+compute-node-new        UNDEF               10.1.1.nnn          aa:bb:cc:dd:ee:ff
+
+$ sudo pdsh -w 'compute-node-new' uptime
+compute-node-new:  11:51:06 up 29 min,  0 users,  load average: 0.00, 0.01, 0.05
+```
+
+Then, see the list of files in both the Warewulf database and the node.
+
+``` no-highlight
+$ sudo wwsh file list
+cgroup.conf             :  rw-r--r-- 1   root root              236 /etc/slurm/cgroup.conf
+dynamic_hosts           :  rw-r--r-- 0   root root             5124 /etc/hosts
+group                   :  rw-r--r-- 1   root root             1526 /etc/group
+ifcfg-ib0.ww            :  rw-r--r-- 1   root root              133 /etc/sysconfig/network-scripts/ifcfg-ib0
+munge.key               :  r-------- 1   munge munge           1024 /etc/munge/munge.key
+network                 :  rw-r--r-- 1   root root               20 /etc/sysconfig/network
+passwd                  :  rw-r--r-- 1   root root             3782 /etc/passwd
+shadow                  :  rw-r----- 1   root root             2732 /etc/shadow
+slurm.conf              :  rw-r--r-- 1   root root             5842 /etc/slurm/slurm.conf
+
+$ sudo wwsh provision print 'compute-node-new' | grep FILES
+   compute-node-new: FILES            = cgroup.conf,dynamic_hosts,group,ifcfg-ib0.ww,munge.key,network,passwd,shadow
+```
+
+We find in the above that `slurm.conf` is missing in the node. Add the file to the new node and print the list again.
+
+``` no-highlight
+$ sudo wwsh provision set 'compute-new-node' --fileadd slurm.conf
+Are you sure you want to make the following changes to 1 node(s):
+
+     ADD: FILES                = slurm.conf
+
+Yes/No> Yes
+
+$ sudo wwsh provision print 'compute-new-node' | grep FILES
+   compute-new-node: FILES            = cgroup.conf,dynamic_hosts,group,ifcfg-ib0.ww,munge.key,network,passwd,shadow,slurm.conf
+```
+
+We now add the node to Slurm. `slurmd` will show the hardware configuration.
+
+``` no-highlight
+$ sudo pdsh -w 'compute-new-node' slurmd -C
+compute-new-node: NodeName=compute-new-node CPUs=48 Boards=1 SocketsPerBoard=2 CoresPerSocket=24 ThreadsPerCore=1 RealMemory=128444 TmpDisk=64222
+compute-new-node: UpTime=0-01:55:51
+```
+
+Memorize the first line somewhere and add a line to `/etc/slurm/slurm.conf` as follows:
+
+```
+(...)
+
+NodeName=compute-new-node      Procs=48 Sockets=2 CoresPerSocket=24 ThreadsPerCore=1 RealMemory=128444 Weight=1041 MemSpecLimit=4000 State=UNKNOWN
+
+(...)
+```
+
+And, update the partitions:
+
+```
+(...)
+
+PartitionName=espresso     Nodes=compute-new-node           MaxNodes=1   MaxCPUsPerNode=10 DefMemPerCPU=2000 MaxTime=00:20:00 State=UP Default=YES
+
+(...)
+```
+
+Since `slurm.conf` has been updated, the file must be re-synced.
+
+``` no-highlight
+sudo wwsh file resync
+```
+
+The re-synchronization process will take a few or several minutes. To see whether it's been done in the compute nodes, run
+
+``` no-highlight
+sudo pdsh -w 'compute-0-[0-24]' grep NodeName=compute-new-node /etc/slurm/slurm.conf
+```
+
+When everything is fine, we restart the slurm daemons. In the master node, run
+
+``` no-highlight
+sudo systemctl restart slurmctld.service
+sudo pdsh -w 'compute-0-[0-24]' systemctl restart slurmd
+sudo systemctl restart slurmctld.service
+```
+
+If there is any error, check the systemd status and see the log message:
+
+``` no-highlight
+systemctl status slurmctld.service
+sudo tail -n50 /var/log/slurmctld.log
 ```

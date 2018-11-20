@@ -10,7 +10,7 @@ The PTC cluster consists of 1 **master node** and 25 **compute nodes** now. Ther
 
 ### CPU and memory
 
-The master node has 1.6 GHz 6-core Intel Xeon CPU and 16 GB memory with 32 GB swap space. Note that the master node is not intended for hard computations or tasks, but for distributing and logging computing jobs to compute nodes. In most cases, you will run commands at the master node and the real computations will be performed by the compute node.
+The master node has 1.6 GHz 6-core Intel Xeon CPU and 16 GB memory with 32 GB swap space. Note that **the master node is not intended for hard computations or tasks**, but for distributing and logging computing jobs to compute nodes. In most cases, you will run commands at the master node and the real computations will be performed by the compute node.
 
 Each compute node has quite a number of CPU cores, 24 to 72 cores with clock speeds of 2.1 GHz to 2.6 GHz. The total accumulated number of CPU cores of all the compute node is 1168. The hyper-threading of CPU is disabled for all nodes. Each node has more than 128 GB memory.
 
@@ -65,7 +65,7 @@ yum list installed
 
 The physics softwares such as [ROOT](http://root.cern.ch/) and [Pythia](http://home.thep.lu.se/Pythia/) are provided through [Environment Modules](http://modules.sourceforge.net/). See the page of [Environment modules](modules.md). The more recent GCC's are also available using modules.
 
-Note that Mathematica is not installed and it will never be since we have a dedicated workstation server for that. And, the Fortran 77 compilers such as `g77` are not supported any longer. (The GNU Fortran compiler, `gfortran`, is available since it's part of GCC.) Update your codes or contact the developer so that they can be compiled by modern Fortran compilers. The Intel C++ and Fortran compilers are not installed as they are not free software and our budget is limited.
+Note that **Mathematica is not installed** and it will never be since we have a dedicated workstation server for that. And, the Fortran 77 compilers such as `g77` are not supported any longer. (The GNU Fortran compiler, `gfortran`, is available since it's part of GCC.) Update your codes or contact the application developer so that they can be compiled by modern Fortran compilers. **The Intel C++ and Fortran compilers are not installed** as they are not free software and the budget of our center is limited.
 
 ## SSH connection
 
@@ -81,9 +81,9 @@ If a graphical user interface is necessary, it can be achieved using X11 forward
 ssh -X userid@ptc.ibs.re.kr
 ```
 
-The machines assigned an IP address of the external network of the IBS building, starting with 10.10.24, can directly connect to the server. Meanwhile, the laptops or PCs using the wireless network (eduroam) in the IBS building as well as user's home network cannot connect directly without SSL VPN. The IT team of the IBS headquarter will provide the SSL VPN client for Linux, macOS, and Windows OS.
+The machines assigned an IP address of the external network of the IBS building, starting with 10.10.24, can directly connect to the server. Meanwhile, the laptops or PCs using the wireless network (eduroam) in the IBS building as well as user's home network cannot connect directly without SSL VPN. The IT team of the IBS headquarter provides the SSL VPN client for Linux, macOS, and Windows OS. Should you need the SSL VPN account and the client, contact the administrator.
 
-The SSH connection from the master node to compute nodes are not allowed unless there are active jobs on the nodes. See the `srun --pty bash` command in the [job scheduler](job-scheduler.md).
+**The SSH connection from the master node to compute nodes are not allowed** unless there are active jobs on the nodes. See the `srun --pty bash` command in the [job scheduler](job-scheduler.md).
 
 Files can be transferred to the server by using `sftp`, `scp`, or `rsync`.
 
@@ -96,7 +96,7 @@ If you see a message like
 IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
 ```
 
-when connecting to the server, remove the line beginning with `ptc.ibs.re.kr` in `.ssh/known_hosts` in your home directory.
+when connecting to the server, remove the line beginning with `ptc.ibs.re.kr` in `.ssh/known_hosts` in your home directory and connect to the master server again.
 
 User's password can be changed by running the `passwd` command.
 

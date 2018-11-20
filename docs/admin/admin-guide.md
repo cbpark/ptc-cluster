@@ -196,3 +196,13 @@ If there is an error, check the systemd status and see the log message:
 systemctl status slurmctld.service
 sudo tail -n50 /var/log/slurmctld.log
 ```
+
+## Viewing data for jobs
+
+The `sacct` command displays accounting data for all jobs in the Slurm database. See `man sacct`. For example,
+
+``` no-highlight
+sudo sacct -n -X -o User%12,Start,End,Elapsed,AllocNodes,AllocCPUs,State -S 2018-11-20T12:00 -E 2018-11-20T18:00
+```
+
+will show all the jobs submitted from 12:00 to 18:00 on November 20, 2018. The command will display the username, the initialization time, the termination time, the elapsed time, the count of allocated CPUs, the number of nodes allocated to the job, and the job status. See `Job Accounting Fields` in `man sacct` or run `sacct --helpformat`.

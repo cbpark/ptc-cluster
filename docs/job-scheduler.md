@@ -92,7 +92,7 @@ compute-0-18
 compute-0-18
 ```
 
-The above task print the hostname of the compute nodes in the `espresso` partition (`-p espresso`) using 5 CPUs (`-n 5`) of 2 nodes (`-N 2`). Note that the maximum number of nodes per task in the `espresso` partition is set to be 2. If you set a larger number, the job will not run and await more resources.
+The above task prints the hostname of the compute nodes in the `espresso` partition (`-p espresso`) using 5 CPUs (`-n 5`) of 2 nodes (`-N 2`). Note that the maximum number of nodes per task in the `espresso` partition is set to be 2. If you set a larger number, the job will not run and await more resources.
 
 ``` no-highlight
 $ srun -N 5 -n 10 -p espresso /bin/hostname

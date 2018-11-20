@@ -125,16 +125,16 @@ shadow                  :  rw-r----- 1   root root             2732 /etc/shadow
 slurm.conf              :  rw-r--r-- 1   root root             5842 /etc/slurm/slurm.conf
 
 $ sudo wwsh provision print 'compute-node-new' | grep FILES
-   compute-node-new: FILES            = cgroup.conf,dynamic_hosts,group,ifcfg-ib0.ww,munge.key,network,passwd,shadow
+   compute-node-new: FILES            = cgroup.conf,dynamic_hosts,group,ifcfg-ib0.ww,munge.key,passwd,shadow,slurm.conf
 ```
 
-We find in the above that `slurm.conf` is missing in the node. Add the file to the new node and print the list again.
+We find in the above that `network` is missing in the node. (The missing file might be different case by case. If every file is already listed, we don't have to add the files.) Add the file to the new node and print the list again.
 
 ``` no-highlight
-$ sudo wwsh provision set 'compute-new-node' --fileadd slurm.conf
+$ sudo wwsh provision set 'compute-new-node' --fileadd network
 Are you sure you want to make the following changes to 1 node(s):
 
-     ADD: FILES                = slurm.conf
+     ADD: FILES                = network
 
 Yes/No> Yes
 

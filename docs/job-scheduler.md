@@ -92,7 +92,13 @@ compute-0-18
 compute-0-18
 ```
 
-The above task prints the hostname of the compute nodes in the `espresso` partition (`-p espresso`) using 5 CPUs (`-n 5`) of 2 nodes (`-N 2`). Note that the maximum number of nodes per task in the `espresso` partition is set to be 2. If you set a larger number, the job will not run and await more resources.
+The above task print the hostname of the compute nodes in the `espresso` partition (`-p espresso`) by allocating five tasks (`-n 5`) of two nodes (`-N 2`). (In most cases, it would be not necessary to specify the number of nodes, `-N`.) The `-n 5` option does not allocate five CPU cores since one processor per task will be used by default. The `--cpus-per-task` option or `-c` will change the default and it's the option that you would use when running multiprocessing (or parallel) jobs.
+
+* `-N`: number of compute nodes requested,
+* `-n`: total number of tasks (processes),
+* `-c`: number of CPUs per task.
+
+Note that the maximum number of nodes per task in the `espresso` partition is set to be 2. If you set a larger number than the limit, the job will not run and await more resources.
 
 ``` no-highlight
 $ srun -N 5 -n 10 -p espresso /bin/hostname
@@ -168,7 +174,7 @@ scontrol requeue <jobid>
 Sometimes, you want interactive operations for a job.
 
 ``` no-highlight
-srun -n 10 -p espresso --pty bash
+srun -p espresso --pty bash
 ```
 
 will put your command prompt to a compute node. This is similar to the `qrsh` command of SGE. You can return back to the master node by the `exit` command. If you're using another shell such as [Zsh](https://www.zsh.org/), add `--pty zsh` instead of `--pty bash`.
@@ -249,14 +255,14 @@ will submit `run.sh` to the `espresso` partition in the `compute-0-1` and `compu
 Another example is to jump into an interactive environment.
 
 ``` no-highlight
-$ srun -p espresso -n 10 --pty /bin/bash
+$ srun -p espresso -c 10 --pty /bin/bash
 [cbpark@compute-0-0 ~]$
 ```
 
-In the above, `-n 10` means that 10 CPU cores will be allocated. A particular node can request by:
+Here, ten CPU cores will be allocated (`-c 10`) in the `espresso` partition. A particular node can request by:
 
 ``` no-highlight
-$ srun -p espresso -n 10 -w 'compute-0-4' --pty /bin/bash
+$ srun -p espresso -c 10 -w 'compute-0-4' --pty /bin/bash
 [cbpark@compute-0-4 ~]$ hostname
 compute-0-4
 ```

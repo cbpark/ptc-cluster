@@ -210,3 +210,9 @@ sudo sacct -n -X -o User%12,Start,End,Elapsed,AllocNodes,AllocCPUs,State -S 2018
 ```
 
 will show all the jobs submitted from 12:00 to 18:00 on November 20, 2018. The command will display the username, the initialization time, the termination time, the elapsed time, the count of allocated CPUs, the number of nodes allocated to the job, and the job status. See `Job Accounting Fields` in `man sacct` or run `sacct --helpformat`.
+
+To create a log file to upload into the IRIS system,
+
+``` no-highlight
+sudo SLURM_TIME_FORMAT="%F%t%R" sacct -n -X -o User%12,Start,End -S 2019-01-01T00:00 -E 2019-01-15T00:00:00 > ptc_log.csv
+```

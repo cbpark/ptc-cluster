@@ -186,36 +186,36 @@ will put your command prompt to a compute node. This is similar to the `qrsh` co
 ``` no-highlight
 $ scontrol show nodes
 NodeName=compute-0-0 Arch=x86_64 CoresPerSocket=20
-   CPUAlloc=0 CPUErr=0 CPUTot=40 CPULoad=0.01
+   CPUAlloc=40 CPUErr=0 CPUTot=40 CPULoad=0.11
    AvailableFeatures=(null)
    ActiveFeatures=(null)
    Gres=(null)
    NodeAddr=compute-0-0 NodeHostName=compute-0-0 Version=17.02
-   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=189975 Sockets=2 Boards=1
+   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=189682 Sockets=2 Boards=1
    MemSpecLimit=4000
-   State=IDLE ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
+   State=ALLOCATED ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
    Partitions=espresso,microcentury,longlunch,workday,testmatch,nextweek
-   BootTime=2018-05-16 15:25:35 SlurmdStartTime=2018-06-08 17:08:42
+   BootTime=2019-02-21 16:10:05 SlurmdStartTime=2019-03-30 01:23:23
    CfgTRES=cpu=40,mem=193336M
-   AllocTRES=
+   AllocTRES=cpu=40
    CapWatts=n/a
    CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
    ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
 
 
 NodeName=compute-0-1 Arch=x86_64 CoresPerSocket=20
-   CPUAlloc=0 CPUErr=0 CPUTot=40 CPULoad=0.01
+   CPUAlloc=40 CPUErr=0 CPUTot=40 CPULoad=0.01
    AvailableFeatures=(null)
    ActiveFeatures=(null)
    Gres=(null)
    NodeAddr=compute-0-1 NodeHostName=compute-0-1 Version=17.02
-   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=189984 Sockets=2 Boards=1
+   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=189833 Sockets=2 Boards=1
    MemSpecLimit=4000
-   State=IDLE ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
+   State=ALLOCATED ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
    Partitions=espresso,microcentury,longlunch,workday,testmatch,nextweek,nextmonth
-   BootTime=2018-05-16 15:30:24 SlurmdStartTime=2018-06-08 17:08:42
+   BootTime=2019-02-21 16:10:03 SlurmdStartTime=2019-03-30 01:23:23
    CfgTRES=cpu=40,mem=193336M
-   AllocTRES=
+   AllocTRES=cpu=40
    CapWatts=n/a
    CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
    ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
@@ -278,7 +278,6 @@ Suppose that we want to submit multiple jobs to the job scheduler using one scri
 #SBATCH -o %x-%j.log
 #
 #SBATCH -p longlunch
-#SBATCH -n 10
 
 for i in $(seq 1 0.1 10); do
   echo $i
@@ -288,7 +287,7 @@ for i in $(seq 1 0.1 10); do
 done
 ```
 
-The important things are `#SBATCH -n 10` for allocating 10 tasks, and the `sbatch --wrap` command in the loop (`seq 1 0.1 10` generates a sequence of numbers from 1 to 10 in a step of 0.1.) It is recommended to pause some seconds between each job submission to allow the job scheduler to process all the work needed to set up, run, and break down the scheduled jobs. If the output of each job is useless, set `-o /dev/null` instead of `-o %x-%j.log`. The `--wrap` option is particularly useful when the job command is simple enough. Otherwise, it had better generate multiple job scripts.
+The important thing is the `sbatch --wrap` command in the loop (`seq 1 0.1 10` generates a sequence of numbers from 1 to 10 in a step of 0.1.) It is recommended to pause some seconds between each job submission to allow the job scheduler to process all the work needed to set up, run, and break down the scheduled jobs. If the output of each job is useless, set `-o /dev/null` instead of `-o %x-%j.log`. The `--wrap` option is particularly useful when the job command is simple enough. Otherwise, it had better generate multiple job scripts.
 
 After submitting the above script into the job scheduler, the `squeue` command shows us
 

@@ -271,7 +271,7 @@ compute-0-4
 
 Suppose that we want to submit multiple jobs to the job scheduler using one script. The useful option for that is `--wrap` of `sbatch`.
 
-``` no-highlight
+``` bash
 #! /bin/bash -l
 #
 #SBATCH -J multiple_jobs
@@ -282,30 +282,30 @@ Suppose that we want to submit multiple jobs to the job scheduler using one scri
 
 for i in $(seq 1 0.1 10); do
   echo $i
-  sbatch -J multiple_jobs_$i -p microcentury -o /dev/null \
+  sbatch -J multiple_jobs_$i -p microcentury -o %x-%j.log \
       --wrap="echo $i; /bin/hostname; sleep 30; echo 'Job finished!'"
   sleep 1  # pause 1 second between each sbatch submit
 done
 ```
 
-The important things are `#SBATCH -n 10` for allocating 10 tasks, and the `sbatch --wrap` command in the loop (`seq 1 0.1 10` generates a sequence of numbers from 1 to 10 in a step of 0.1.) It is recommended to pause some seconds between each job submission to allow the job scheduler to process all the work needed to set up, run, and break down the scheduled jobs. It is particularly useful when the job command is simple enough. Otherwise, it had better generate multiple job scripts.
+The important things are `#SBATCH -n 10` for allocating 10 tasks, and the `sbatch --wrap` command in the loop (`seq 1 0.1 10` generates a sequence of numbers from 1 to 10 in a step of 0.1.) It is recommended to pause some seconds between each job submission to allow the job scheduler to process all the work needed to set up, run, and break down the scheduled jobs. If the output of each job is useless, set `-o /dev/null` instead of `-o %x-%j.log`. The `--wrap` option is particularly useful when the job command is simple enough. Otherwise, it had better generate multiple job scripts.
 
 After submitting the above script into the job scheduler, the `squeue` command shows us
 
 ``` no-highlight
 $ squeue
-            178350 longlunch multiple   cbpark  RUNNING       1:31   3:00:00      1 compute-0-21
-            178366 microcent multiple   cbpark  RUNNING       0:57   1:00:00      1 compute-0-23
-            178369 microcent multiple   cbpark  RUNNING       0:45   1:00:00      1 compute-0-23
-            178373 microcent multiple   cbpark  RUNNING       0:14   1:00:00      1 compute-0-21
-            178374 microcent multiple   cbpark  RUNNING       0:10   1:00:00      1 compute-0-23
-            178375 microcent multiple   cbpark  RUNNING       0:07   1:00:00      1 compute-0-23
-            178376 microcent multiple   cbpark  RUNNING       0:07   1:00:00      1 compute-0-23
-            178377 microcent multiple   cbpark  RUNNING       0:06   1:00:00      1 compute-0-23
-            178378 microcent multiple   cbpark  RUNNING       0:05   1:00:00      1 compute-0-23
-            178379 microcent multiple   cbpark  RUNNING       0:02   1:00:00      1 compute-0-23
-            178380 microcent multiple   cbpark  RUNNING       0:02   1:00:00      1 compute-0-23
-            178381 microcent multiple   cbpark  RUNNING       0:01   1:00:00      1 compute-0-23
+178350 longlunch multiple   cbpark  RUNNING       1:31   3:00:00      1 compute-0-21
+178366 microcent multiple   cbpark  RUNNING       0:57   1:00:00      1 compute-0-23
+178369 microcent multiple   cbpark  RUNNING       0:45   1:00:00      1 compute-0-23
+178373 microcent multiple   cbpark  RUNNING       0:14   1:00:00      1 compute-0-21
+178374 microcent multiple   cbpark  RUNNING       0:10   1:00:00      1 compute-0-23
+178375 microcent multiple   cbpark  RUNNING       0:07   1:00:00      1 compute-0-23
+178376 microcent multiple   cbpark  RUNNING       0:07   1:00:00      1 compute-0-23
+178377 microcent multiple   cbpark  RUNNING       0:06   1:00:00      1 compute-0-23
+178378 microcent multiple   cbpark  RUNNING       0:05   1:00:00      1 compute-0-23
+178379 microcent multiple   cbpark  RUNNING       0:02   1:00:00      1 compute-0-23
+178380 microcent multiple   cbpark  RUNNING       0:02   1:00:00      1 compute-0-23
+178381 microcent multiple   cbpark  RUNNING       0:01   1:00:00      1 compute-0-23
 ```
 
 ### OpenMP

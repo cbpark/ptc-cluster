@@ -283,7 +283,7 @@ for i in $(seq 1 0.1 10); do
   echo $i
   sbatch -J multiple_jobs_$i -p microcentury -o %x-%j.log \
       --wrap="echo $i; /bin/hostname; sleep 30; echo 'Job finished!'"
-  sleep 1  # pause 1 second between each sbatch submit
+  sleep 5  # pause 5 second between each sbatch submit
 done
 ```
 

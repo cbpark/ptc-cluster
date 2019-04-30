@@ -216,3 +216,5 @@ To create a log file to upload into the IRIS system,
 ``` no-highlight
 sudo SLURM_TIME_FORMAT="%F%t%R" sacct -n -X -o User%12,Start,End -S 2019-01-01T00:00 -E 2019-01-15T00:00:00 > ptc_log.csv
 ```
+
+Note that `SLURM_TIME_FORMAT` follows the formats of the `strftime` function. See `man strftime`. In the above, `%R` yields the time in 24-hour notation (`%H-%M`).

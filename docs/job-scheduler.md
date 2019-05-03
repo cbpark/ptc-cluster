@@ -15,7 +15,7 @@ The partitions group compute nodes into logical sets. Each partition has its own
 ``` no-highlight
 $ sinfo
 PARTITION    AVAIL  TIMELIMIT JOB_SIZE MAX_CPUS_PER_NODE NODES(A/I/O/T)    CPUS(A/I/O/T)
-espresso*       up      20:00      1-2                10      0/25/0/25    0/1168/0/1168
+espresso*       up      20:00      1-2                10      0/26/0/26    0/1216/0/1216
 ```
 
 The name of the partition shown in the above is `espresso`, which is up and running. `*` denotes that it is the default partition. The `espresso` partition will be used if you do not specify a partition to use. The job time limit (`TIMELIMIT`) is set to be 20 minutes. Jobs running beyond the time limit will be automatically killed. A job submitted to the `espresso` partition can use two nodes at most (`JOB_SIZE`), and the maximum number of CPUs per node (`MAX_CPUS_PER_NODE`) is 10. Thus, the job in the `espresso` partition can use concurrently up to 2 * 10 = 20 CPUs. The last two fields in the above show the number of nodes by a state in the format "allocated/idle/other/total" (A/I/O/T) and the number of CPUs in the same format.
@@ -29,10 +29,10 @@ PartitionName=espresso
    AllocNodes=ALL Default=YES QoS=N/A
    DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO GraceTime=0 Hidden=NO
    MaxNodes=2 MaxTime=00:20:00 MinNodes=1 LLN=NO MaxCPUsPerNode=10
-   Nodes=compute-0-[0-24]
+   Nodes=compute-0-[0-25]
    PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO
    OverTimeLimit=NONE PreemptMode=OFF
-   State=UP TotalCPUs=1168 TotalNodes=25 SelectTypeParameters=NONE
+   State=UP TotalCPUs=1216 TotalNodes=26 SelectTypeParameters=NONE
    DefMemPerCPU=2000 MaxMemPerNode=UNLIMITED
 ```
 
@@ -228,10 +228,10 @@ One can check the list of nodes assigned to the partition by running `\sinfo`.
 ``` no-highlight
 $ \sinfo
 PARTITION    AVAIL  TIMELIMIT  NODES  STATE NODELIST
-espresso*       up      20:00     25   idle compute-0-[0-24]
+espresso*       up      20:00     26   idle compute-0-[0-25]
 ```
 
-`NODELIST` shows that the `espresso` partition has 25 nodes from `compute-0-0` to `compute-0-24`.
+`NODELIST` shows that the `espresso` partition has 26 nodes from `compute-0-0` to `compute-0-25`.
 
 The job scheduler will automatically select the compute nodes when a job has been submitted by using `sbatch` or `srun`. See the output of `squeue` to check the list of nodes allocated to the job. On the other hand, the user may select specific compute nodes by adding options with `-w` or `--nodelist` to the `sbatch` or `srun` commands. For instance,
 

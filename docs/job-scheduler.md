@@ -186,36 +186,36 @@ will put your command prompt to a compute node. This is similar to the `qrsh` co
 ``` no-highlight
 $ scontrol show nodes
 NodeName=compute-0-0 Arch=x86_64 CoresPerSocket=20
-   CPUAlloc=40 CPUErr=0 CPUTot=40 CPULoad=0.11
+   CPUAlloc=0 CPUErr=0 CPUTot=40 CPULoad=0.01
    AvailableFeatures=(null)
    ActiveFeatures=(null)
    Gres=(null)
    NodeAddr=compute-0-0 NodeHostName=compute-0-0 Version=17.02
-   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=189682 Sockets=2 Boards=1
+   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=190091 Sockets=2 Boards=1
    MemSpecLimit=4000
-   State=ALLOCATED ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
-   Partitions=espresso,microcentury,longlunch,workday,testmatch,nextweek
-   BootTime=2019-02-21 16:10:05 SlurmdStartTime=2019-03-30 01:23:23
+   State=IDLE ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
+   Partitions=espresso,microcentury,longlunch,workday,testmatch,nextweek,nextmonth
+   BootTime=2019-05-02 15:12:56 SlurmdStartTime=2019-05-03 11:48:02
    CfgTRES=cpu=40,mem=193336M
-   AllocTRES=cpu=40
+   AllocTRES=
    CapWatts=n/a
    CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
    ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
 
 
 NodeName=compute-0-1 Arch=x86_64 CoresPerSocket=20
-   CPUAlloc=40 CPUErr=0 CPUTot=40 CPULoad=0.01
+   CPUAlloc=0 CPUErr=0 CPUTot=40 CPULoad=0.01
    AvailableFeatures=(null)
    ActiveFeatures=(null)
    Gres=(null)
    NodeAddr=compute-0-1 NodeHostName=compute-0-1 Version=17.02
-   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=189833 Sockets=2 Boards=1
+   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=190095 Sockets=2 Boards=1
    MemSpecLimit=4000
-   State=ALLOCATED ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
+   State=IDLE ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
    Partitions=espresso,microcentury,longlunch,workday,testmatch,nextweek,nextmonth
-   BootTime=2019-02-21 16:10:03 SlurmdStartTime=2019-03-30 01:23:23
+   BootTime=2019-05-02 15:12:57 SlurmdStartTime=2019-05-03 11:48:02
    CfgTRES=cpu=40,mem=193336M
-   AllocTRES=cpu=40
+   AllocTRES=
    CapWatts=n/a
    CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
    ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s

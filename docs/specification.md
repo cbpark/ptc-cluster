@@ -75,13 +75,13 @@ Users can connect to the master node via SSH with port 22:
 ssh userid@ptc.ibs.re.kr
 ```
 
-If a graphical user interface is necessary, it can be achieved using X11 forwarding.
+If a graphical user interface is necessary, it can be achieved using X11 forwarding:
 
 ``` no-highlight
 ssh -X userid@ptc.ibs.re.kr
 ```
 
-The machines assigned an IP address of the external network of the IBS building, starting with 10.10.24, can directly connect to the server. Meanwhile, the laptops or PCs using the wireless network (eduroam) in the IBS building as well as user's home network cannot connect directly without SSL VPN. The IT team of the IBS headquarter provides the SSL VPN client for Linux, macOS, and Windows OS. Should you need the SSL VPN account and the client, contact the administrator.
+The machines assigned an IP address of the external network of the IBS building, starting with 10.10.24, can directly connect to the server using SSH. Meanwhile, the laptops or PCs using the wireless network (eduroam) in the IBS building as well as user's home network cannot connect directly without SSL VPN. The IT team of the IBS headquarter provides the SSL VPN client for Linux, macOS, and Windows OS. Should you need the SSL VPN account and the client, contact the administrator.
 
 **The SSH connection from the master node to compute nodes are not allowed** unless there are active jobs on the nodes. See the `srun --pty bash` command in the [job scheduler](job-scheduler.md).
 
@@ -104,4 +104,4 @@ User's password can be changed by running the `passwd` command.
 
 The CROWS (or ctpu-crows) cluster is still running with CentOS 6.10 and Sun Grid Engine (SGE), and there is no definite plan for upgrading it currently. It is because of the need for legacy software or that some people are feeling too accustomed to the SGE cluster system so don't like a change. The users of the CROWS cluster can attempt to use the PTC cluster upon request of the user and approval of the system administrator. (Note that the administrator will not help migrate or update user's files. It's up to the user.) Eventually, the CROWS cluster will be upgraded, and then be merged with the PTC cluster.
 
-As of May 2019, the CROWS cluster has been merged with the PTC cluster.
+As of May 2019, all the compute nodes of the CROWS cluster have been merged with the PTC cluster. See the output of `scontrol show partition crows`.

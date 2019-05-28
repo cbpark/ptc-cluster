@@ -43,6 +43,21 @@ A useful command to force the synchronization is
 sudo pdsh -w 'compute-0-[0-25] compute-1-[1-16]' 'rm /tmp/.wwgetfiles_timestamp; SLEEPTIME=1 /warewulf/bin/wwgetfiles'
 ```
 
+If the user reports some error messages concerning `nix` when logging in the master server, run
+
+``` no-highlight
+sudo su -
+add-user-nix alice
+exit
+```
+
+And, check whether the user directory has been created with correct permission. For example,
+
+``` no-highlight
+$ ls -ld /nix/var/nix/gcroots/per-user/alice
+drwxr-xr-x 2 alice alice 6 Nov 21  2018 /nix/var/nix/gcroots/per-user/alice
+```
+
 ## System-wide environment variables
 
 See `/etc/profile` and files in `/etc/profile.d`.

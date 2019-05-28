@@ -34,13 +34,13 @@ sudo wwsh file resync
 The synchronization might take several minutes. To check the status, run
 
 ``` no-highlight
-sudo pdsh -w 'compute-0-[0-24]' grep alice /etc/passwd
+sudo pdsh -w 'compute-0-[0-25] compute-1-[1-16]' grep alice /etc/passwd
 ```
 
 A useful command to force the synchronization is
 
 ``` no-highlight
-sudo pdsh -w 'compute-0-[0-24]' 'rm /tmp/.wwgetfiles_timestamp; SLEEPTIME=1 /warewulf/bin/wwgetfiles'
+sudo pdsh -w 'compute-0-[0-25] compute-1-[1-16]' 'rm /tmp/.wwgetfiles_timestamp; SLEEPTIME=1 /warewulf/bin/wwgetfiles'
 ```
 
 ## System-wide environment variables
@@ -183,14 +183,14 @@ sudo wwsh file resync
 The re-synchronization process will take a few or several minutes. To see whether it's been done in the compute nodes, run
 
 ``` no-highlight
-sudo pdsh -w 'compute-0-[0-24]' grep NodeName=compute-new-node /etc/slurm/slurm.conf
+sudo pdsh -w 'compute-0-[0-25] compute-1-[1-16]' grep NodeName=compute-new-node /etc/slurm/slurm.conf
 ```
 
 When everything is fine, we restart the slurm daemons. In the master node, run
 
 ``` no-highlight
 sudo systemctl restart slurmctld.service
-sudo pdsh -w 'compute-0-[0-24]' systemctl restart slurmd
+sudo pdsh -w 'compute-0-[0-25] compute-1-[1-16]' systemctl restart slurmd
 sudo systemctl restart slurmctld.service
 ```
 

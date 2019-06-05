@@ -2,6 +2,10 @@
 
 A job scheduler or workload automation is necessary for efficient handling of the computing resources. It is essential and the most important application in order to run your jobs on the compute nodes, so every user must know how to use it. Tasks without passing through the job scheduler will be killed without notice.
 
+| ![xkcd - Hard Reboot](https://imgs.xkcd.com/comics/hard_reboot_2x.png) |
+| :--: |
+| [xkcd](https://xkcd.com/), [*Hard Reboot*](https://xkcd.com/1495/) |
+
 As a job scheduler of the PTC cluster, [Slurm](https://slurm.schedmd.com/) is employed. The installed version is 17.02.9. If you are new to Slurm, the official [Quick Start User Guide](https://slurm.schedmd.com/quickstart.html) is the best place to start learning about it. Here is a basic instruction for using Slurm in the PTC cluster.
 
 The users of the old PTC cluster system might be familiar with Sun Grid Engine (SGE). Please refer to [SGE to SLURM conversion](https://srcc.stanford.edu/sge-slurm-conversion) and modify the scripts.
@@ -346,7 +350,7 @@ module load gnu7 openmpi
 srun --mpi=pmix ./MYPROGRAM
 ```
 
-For using `openmpi`, do not forget to add `--mpi=pmix` in the `srun` command.
+For using `openmpi`, do not forget to add `--mpi=pmix` to the `srun` command.
 
 ## Deadly commands
 

@@ -346,6 +346,8 @@ module load gnu7 openmpi
 srun --mpi=pmix ./MYPROGRAM
 ```
 
+For using `openmpi`, do not forget to add `--mpi=pmix` in the `srun` command.
+
 ## Deadly commands
 
 | ![xkcd - Admin Mourning](https://imgs.xkcd.com/comics/admin_mourning.png) |

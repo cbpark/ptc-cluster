@@ -350,7 +350,12 @@ module load gnu7 openmpi
 srun --mpi=pmix ./MYPROGRAM
 ```
 
-For using `openmpi`, do not forget to add `--mpi=pmix` to the `srun` command.
+For using `openmpi`, do not forget to add `--mpi=pmix` to the `srun` command. If a segmentation fault is occurred, `ulimit -s unlimited` might solve it. For example,
+
+``` bash
+ulimit -s unlimited
+srun --mpi=pmix ./MYPROGRAM
+```
 
 ## Deadly commands
 

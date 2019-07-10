@@ -40,12 +40,12 @@ PartitionName=longlunch
    AllowGroups=usercl1 AllowAccounts=ALL AllowQos=ALL
    AllocNodes=ALL Default=NO QoS=N/A
    DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO GraceTime=0 Hidden=NO
-   MaxNodes=26 MaxTime=03:00:00 MinNodes=1 LLN=NO MaxCPUsPerNode=40
-   Nodes=compute-0-[0-25]
+   MaxNodes=27 MaxTime=03:00:00 MinNodes=1 LLN=NO MaxCPUsPerNode=48
+   Nodes=compute-0-[0-26]
    PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO
    OverTimeLimit=NONE PreemptMode=OFF
-   State=UP TotalCPUs=1216 TotalNodes=26 SelectTypeParameters=NONE
-   DefMemPerCPU=2000 MaxMemPerNode=UNLIMITED
+   State=UP TotalCPUs=1280 TotalNodes=27 SelectTypeParameters=NONE
+   DefMemPerCPU=3000 MaxMemPerNode=UNLIMITED
 ```
 
 As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 12 nodes for a job and the time limit is 3 hours (`MaxNodes=12 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.

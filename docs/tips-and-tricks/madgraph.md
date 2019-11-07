@@ -41,14 +41,14 @@ PartitionName=longlunch
    AllocNodes=ALL Default=NO QoS=N/A
    DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO GraceTime=0 Hidden=NO
    MaxNodes=27 MaxTime=03:00:00 MinNodes=1 LLN=NO MaxCPUsPerNode=48
-   Nodes=compute-0-[0-26]
+   Nodes=compute-0-[0-27]
    PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO
    OverTimeLimit=NONE PreemptMode=OFF
-   State=UP TotalCPUs=1280 TotalNodes=27 SelectTypeParameters=NONE
+   State=UP TotalCPUs=1344 TotalNodes=28 SelectTypeParameters=NONE
    DefMemPerCPU=3000 MaxMemPerNode=UNLIMITED
 ```
 
-As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 12 nodes for a job and the time limit is 3 hours (`MaxNodes=12 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
+As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 27 nodes for a job and the time limit is 3 hours (`MaxNodes=27 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
 
 Now we modify some fields of `input/mg5_configuration.txt`.
 

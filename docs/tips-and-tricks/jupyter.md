@@ -60,7 +60,7 @@ Install jupyter using [pip](https://pypi.org/project/pip/). The packages will be
 $ pip install --upgrade jupyter
 Collecting jupyter
 (...)
-Successfully installed Successfully installed MarkupSafe-1.1.1 Send2Trash-1.5.0 (...)
+Successfully installed MarkupSafe-1.1.1 Send2Trash-1.5.0 (...)
 
 $ which jupyter
 ~/.virtualenvs/jupyter/bin/jupyter

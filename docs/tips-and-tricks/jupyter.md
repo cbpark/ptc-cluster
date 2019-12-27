@@ -13,9 +13,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper_lazy.sh
 ```
 
-By running `source ~/.bash_profile`, you are ready to use the virtualenvwrapper.
-
-Now, load a python [module](../modules.md) in your environment. For example,
+By running `source ~/.bash_profile`, you are ready to use the virtualenvwrapper. Now, load a python [module](../modules.md) into your environment. For example,
 
 ``` no-highlight
 $ module load python/3.6.4
@@ -54,7 +52,7 @@ $ echo $PATH
 /home/cbpark/.virtualenvs/jupyter/bin:/opt/ohpc/pub/libs/gnu7/python-3.6.4/bin:(...)
 ```
 
-Install jupyter using [pip](https://pypi.org/project/pip/). The packages will be installed into `~/.virtualenvs/jupyter`. The whole installation may take several minutes.
+Install jupyter using [pip](https://pypi.org/project/pip/). The packages will be installed in `~/.virtualenvs/jupyter`. The whole installation may take several minutes.
 
 ``` no-highlight
 $ pip install --upgrade jupyter

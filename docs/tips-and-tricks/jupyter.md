@@ -82,7 +82,7 @@ $ hostname
 compute-0-25
 ```
 
-Here, the job name is `jupyter` and we will use 10 CPU cores for the job. The hostname of the allocated compute node is `compute-0-25`. Memorize the hostname for the next step!
+Here, the job name is `jupyter` and we will use 10 CPU cores for the job in the partition named `workday`. The hostname of the allocated compute node is `compute-0-25`. Memorize the hostname for the next step!
 
 Now you can run the jupyter notebook:
 

@@ -58,6 +58,14 @@ $ ls -ld /nix/var/nix/gcroots/per-user/alice
 drwxr-xr-x 2 alice alice 6 Nov 21  2018 /nix/var/nix/gcroots/per-user/alice
 ```
 
+To register the user to the `sacct`, run `sacctmgr`.
+
+``` no-highlight
+$ sudo sacctmgr show account
+$ sudo sacctmgr show user -s
+$ sudo sacctmgr add user alice Account=ctpu
+```
+
 ## System-wide environment variables
 
 See `/etc/profile` and files in `/etc/profile.d`.

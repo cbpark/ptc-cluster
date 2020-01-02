@@ -16,7 +16,5 @@ pages:
     - Tips and tricks:
         - 'MadGraph' : 'tips-and-tricks/madgraph.md'
         - 'Jupyter Notebook' : 'tips-and-tricks/jupyter.md'
-    - Admin:
-        - 'Administrator Guide' : 'admin/admin-guide.md'
 
 theme: readthedocs

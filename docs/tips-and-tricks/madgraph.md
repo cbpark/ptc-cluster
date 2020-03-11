@@ -207,7 +207,7 @@ If we do not exit from the compute node, it will automatically be killed when th
 
 The interactive execution would be convenient when one wants to test a model or do a pilot research. But if we're going to produce a large number of event samples, the batch processing will be much easier and efficient.
 
-At first, we modify `input/mg5_configuration.txt` as in the above. Then, we move to the MadGraph directory and create a script named `run_mg5_slurm.sh` (the name is arbitrary, of course) for batch processing as follows.
+At first, we modify `input/mg5_configuration.txt` as in the above. Then, we move to the MadGraph directory and create a script named `run_mg5_slurm.sh` (the name is arbitrary, of course) for batch processing as follows:
 
 ``` bash
 #! /bin/bash -l
@@ -238,7 +238,7 @@ We submit the script to the job queue as
 sbatch run_mg5_slurm.sh
 ```
 
-and it's done. `squeue` shows that our job is running.
+and it's done. `squeue` shows that our job is running on a calculate node (`compute-0-21`).
 
 ``` no-highlight
 $ squeue
@@ -246,7 +246,7 @@ JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(
   698 longlunch ttbar_mg   cbpark  RUNNING       5:21   3:00:00      1 compute-0-21
 ```
 
-Since the standard output is written to `ttbar_mg5_batch_output.log` (`#SBATCH --output=ttbar_mg5_batch_output.log`), we can check the messages from the Madgraph while running.
+Since the standard output would be written to `ttbar_mg5_batch_output.log` (`#SBATCH --output=ttbar_mg5_batch_output.log`), we can check the messages from the Madgraph while running.
 
 ``` no-highlight
 tail -f ttbar_mg5_batch_output.log

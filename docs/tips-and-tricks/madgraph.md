@@ -102,7 +102,7 @@ Version 2.06.09
 ]])
 ```
 
-The path of HepMC is `/opt/ohpc/pub/libs/gnu7/hepmc/2.06.09` as can be deduced from the above. `lhapdf-config` and `fastjet-config` are already listed in our `PATH`.
+The path of HepMC is `/opt/ohpc/pub/libs/gnu7/hepmc/2.06.09` as can be deduced from the above. `lhapdf-config` and `fastjet-config` are already listed in the `PATH`.
 
 ``` no-highlight
 $ which lhapdf-config
@@ -121,7 +121,7 @@ cluster_queue = longlunch
 cluster_size = 100
 ```
 
-Here, we choose the cluster running mode (`run_mode = 1`) in the Slurm workload manager (`cluster_type = slurm`). The job will be submitted to the `longlunch` partition (`cluster_queue = longlunch`) using up to 100 cores (`cluster_size = 100`). Recall that the maximum allowed number of nodes is 12 and the maximum number of CPUs per node is 40 for a job submitted to the `longlunch` partition. In practice, MadGraph will choose the number of cores to use within the specified `cluster_size`.
+Here, we choose the cluster running mode (`run_mode = 1`) in the Slurm workload manager (`cluster_type = slurm`). The job will be submitted to the `longlunch` partition (`cluster_queue = longlunch`) using up to 100 cores (`cluster_size = 100`). Recall that the maximum allowed number of nodes is 27 and the maximum number of CPUs per node is 48 for a job submitted to the `longlunch` partition. In practice, MadGraph will choose the number of cores to use within the specified `cluster_size`.
 
 After modifying the other fields if necessary, we run `mg5_aMC`.
 

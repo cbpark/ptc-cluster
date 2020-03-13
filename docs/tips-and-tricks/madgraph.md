@@ -72,8 +72,6 @@ cluster_size = 100
 
 delphes_path = /opt/ohpc/pub/libs/gnu7/delphes/3.4.1/bin
 
-lhapdf = lhapdf-config
-
 fastjet = fastjet-config
 
 collier = /opt/ohpc/pub/libs/gnu7/collier/1.2/lib
@@ -102,11 +100,9 @@ Version 2.06.09
 ]])
 ```
 
-The path of HepMC is `/opt/ohpc/pub/libs/gnu7/hepmc/2.06.09` as can be deduced from the above. `lhapdf-config` and `fastjet-config` are already listed in the `PATH`.
+The path of HepMC is `/opt/ohpc/pub/libs/gnu7/hepmc/2.06.09` as can be deduced from the above. `fastjet-config` is already listed in the `PATH`.
 
 ``` no-highlight
-$ which lhapdf-config
-/opt/ohpc/pub/libs/gnu7/lhapdf/6.2.1/bin/lhapdf-config
 $ which fastjet-config
 /opt/ohpc/pub/libs/gnu7/fastjet/3.3.0/bin/fastjet-config
 ```
@@ -155,7 +151,6 @@ After modifying the other fields if necessary, we run `mg5_aMC`.
 load MG5 configuration from input/mg5_configuration.txt
 set collier to /opt/ohpc/pub/libs/gnu7/collier/1.2/lib
 set fastjet to fastjet-config
-set lhapdf to lhapdf-config
 No valid eps viewer found. Please set in ./input/mg5_configuration.txt
 No valid web browser found. Please set in ./input/mg5_configuration.txt
 Loading default model: sm

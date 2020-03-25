@@ -357,6 +357,11 @@ ulimit -s unlimited
 srun --mpi=pmix ./MYPROGRAM
 ```
 
+Here are some useful guides for using MPI under Slurm:
+
+* [MPI and UPC Users Guide](https://slurm.schedmd.com/mpi_guide.html).
+* [Running jobs under Slurm](https://www.open-mpi.org/faq/?category=slurm).
+
 ## Deadly commands
 
 | ![xkcd - Admin Mourning](https://imgs.xkcd.com/comics/admin_mourning.png) |

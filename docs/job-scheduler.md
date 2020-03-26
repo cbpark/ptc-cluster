@@ -353,8 +353,10 @@ mpirun ./MYPROGRAM
 Note that `-np` flag is not required because `mpirun` will automatically figure out the configuration from the Slurm environment variables. If a segmentation fault has occurred, setting `ulimit` might solve it. For example,
 
 ``` bash
+(...)
+
 ulimit -s unlimited
-srun --mpi=pmix ./MYPROGRAM
+mpirun ./MYPROGRAM
 ```
 
 Here are some useful guides for using MPI under Slurm:

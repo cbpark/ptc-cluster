@@ -347,10 +347,10 @@ Here `MYPROGRAM` is the executable you will run on the compute node. The most im
 
 module load gnu7 openmpi
 
-srun --mpi=pmix ./MYPROGRAM
+mpirun ./MYPROGRAM
 ```
 
-For using `openmpi`, do not forget to add `--mpi=pmix` to the `srun` command. If a segmentation fault has occurred, setting `ulimit` might solve it. For example,
+Note that `-np` flag is not required because `mpirun` will automatically figure out the configuration from the Slurm environment variables. If a segmentation fault has occurred, setting `ulimit` might solve it. For example,
 
 ``` bash
 ulimit -s unlimited

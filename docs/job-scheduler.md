@@ -137,8 +137,6 @@ Complicated operations can be done by submitting a script, which is reusable for
 #SBATCH --nodes=2
 #SBATCH --mem-per-cpu=100
 #SBATCH --time=10:00
-#
-#SBATCH --mail-type=END,FAIL,TIME_LIMIT
 
 srun echo 'Greetings from' $(/bin/hostname)
 srun sleep 60

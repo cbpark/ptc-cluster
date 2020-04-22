@@ -1,6 +1,6 @@
 # MadGraph
 
-Since there are a lot of questions and requests in regard to run [MadGraph 5](https://launchpad.net/mg5amcnlo) (MadGraph5_aMC@NLO) in the cluster, the instruction is given here. The version of MadGraph used here is 2.6.1.
+Since there are a lot of questions and requests in regard to run [MadGraph 5](https://launchpad.net/mg5amcnlo) (`MadGraph5_aMC@NLO`) in the cluster, the instruction is given here. The version of MadGraph used here is 2.6.1.
 
 There are two ways to run MadGraph, _interactive execution_ and _batch processing_. Both are possible to run it in the cluster.
 
@@ -25,7 +25,7 @@ Currently Loaded Modules:
   5) openmpi/1.10.7  10) MG5aMC_PY8_interface/1.0
 ```
 
-We now jump to a compute node. The compute node will automatically be chosen by Slurm.
+Note that MadGraph 5 is not installed in the module. Go to the official [webpage]((https://launchpad.net/mg5amcnlo)) to get the source tarball. After extracting the tarball into a working directory, we jump to a compute node. The compute node will automatically be chosen by Slurm.
 
 ``` no-highlight
 $ srun -p longlunch --pty bash
@@ -50,7 +50,7 @@ PartitionName=longlunch
 
 As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 27 nodes for a job and the time limit is 3 hours (`MaxNodes=27 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
 
-Now we modify some fields of `input/mg5_configuration.txt`.
+Now we modify some fields of `input/mg5_configuration.txt` inside MadGraph 5.
 
 ``` no-highlight
 pythia8_path = /opt/ohpc/pub/libs/gnu7/pythia/8.2.35
@@ -107,7 +107,7 @@ $ which fastjet-config
 /opt/ohpc/pub/libs/gnu7/fastjet/3.3.0/bin/fastjet-config
 ```
 
-The most important part of the configuration file for running in the cluster is
+The most important part of the configuration file (`input/mg5_configuration.txt`) for running in the cluster is
 
 ``` no-highlight
 run_mode = 1
@@ -117,7 +117,7 @@ cluster_queue = longlunch
 cluster_size = 100
 ```
 
-Here, we choose the cluster running mode (`run_mode = 1`) to be the Slurm workload manager (`cluster_type = slurm`). The job will be submitted to the `longlunch` partition (`cluster_queue = longlunch`) using up to 100 cores (`cluster_size = 100`). Recall that the maximum allowed number of nodes is 27 and the maximum number of CPUs per node is 48 for a job submitted to the `longlunch` partition. In practice, MadGraph will choose the number of cores to use within the specified `cluster_size`.
+Here, we choose the cluster running mode (`run_mode = 1`) to be the Slurm workload manager (`cluster_type = slurm`). The job will be submitted to the `longlunch` partition (`cluster_queue = longlunch`) using _up to_ 100 cores (`cluster_size = 100`). Recall that the maximum allowed number of nodes is 27 and the maximum number of CPUs per node is 48 for a job submitted to the `longlunch` partition. In practice, MadGraph will choose the number of cores to use within the specified `cluster_size`.
 
 After modifying the other fields if necessary, we run `mg5_aMC`.
 

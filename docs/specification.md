@@ -69,16 +69,16 @@ Note that **Mathematica is not installed** and it will never be since we have a 
 
 ## SSH connection
 
-Users can connect to the master node via SSH with port 22:
+Users can connect to the master node via SSH with port 4022:
 
 ``` no-highlight
-ssh userid@ptc.ibs.re.kr
+ssh -p 4022 userid@ptc.ibs.re.kr
 ```
 
 If a graphical user interface is necessary, it can be achieved using X11 forwarding:
 
 ``` no-highlight
-ssh -X userid@ptc.ibs.re.kr
+ssh -X -p 4022 userid@ptc.ibs.re.kr
 ```
 
 The machines assigned an IP address of the external network of the IBS building, starting with 10.10.24, can directly connect to the server using SSH. Meanwhile, the laptops or PCs using the wireless network (eduroam) in the IBS building as well as user's home network cannot connect directly without SSL VPN. The IT team of the IBS headquarter provides the SSL VPN client for Linux, macOS, and Windows OS. Should you need the SSL VPN account and the client, contact the administrator.

@@ -329,7 +329,7 @@ srun -c $SLURM_CPUS_PER_TASK ./MYPROGRAM
 
 Here `MYPROGRAM` is the executable you will run on the compute node. The most important parts are `--nodes=1` and `--cpus-per-task=8`. The latter tells the job scheduler how many threads you intend to run with. Unless the number of nodes is 1, the job could be distributed over many nodes, leading to poor performance.
 
-We recommend that the number of threads is set to be less than 40 because the majority of the compute nodes have the number of CPUs up to 40. If the number exceeds 40, the job will be pending until a compute node having more CPUs become available.
+Furthermore, we recommend that the number of threads is set to be less than 40 because the majority of the compute nodes have up to _only_ 40 CPUs. If the number exceeds 40, the job will be pending until a compute node having more CPUs become available.
 
 ``` no-highlight
 $ squeue

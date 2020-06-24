@@ -241,3 +241,9 @@ sudo SLURM_TIME_FORMAT="%F%t%R" sacct -n -X -o User%12,Start,End -S 2019-01-01T0
 ```
 
 Note that `SLURM_TIME_FORMAT` follows the formats of the `strftime` function. See `man strftime`. In the above, `%R` yields the time in 24-hour notation (`%H-%M`).
+
+## Printing out the reason of the DOWN state
+
+``` no-highlight
+$ scontrol show node $(sinfo | grep down | awk '{print $6}') | awk '/NodeName|Reason/{print}'
+```

@@ -40,11 +40,11 @@ PartitionName=longlunch
    AllowGroups=usercl1 AllowAccounts=ALL AllowQos=ALL
    AllocNodes=ALL Default=NO QoS=N/A
    DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO GraceTime=0 Hidden=NO
-   MaxNodes=27 MaxTime=03:00:00 MinNodes=1 LLN=NO MaxCPUsPerNode=48
-   Nodes=compute-0-[0-27]
+   MaxNodes=27 MaxTime=03:00:00 MinNodes=1 LLN=NO MaxCPUsPerNode=40
+   Nodes=compute-0-[0-28]
    PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO
    OverTimeLimit=NONE PreemptMode=OFF
-   State=UP TotalCPUs=1344 TotalNodes=28 SelectTypeParameters=NONE
+   State=UP TotalCPUs=1408 TotalNodes=29 SelectTypeParameters=NONE
    DefMemPerCPU=3000 MaxMemPerNode=UNLIMITED
 ```
 

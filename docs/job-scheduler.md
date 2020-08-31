@@ -22,7 +22,7 @@ PARTITION    AVAIL  TIMELIMIT JOB_SIZE MAX_CPUS_PER_NODE NODES(A/I/O/T)    CPUS(
 espresso*       up      20:00      1-2                10      0/29/0/29    0/1408/0/1408
 ```
 
-The name of the partition shown in the above is `espresso`, which is up and running. `*` denotes that it is the default partition. The `espresso` partition will be used if you do not specify a partition to use. The job time limit (`TIMELIMIT`) is set to be 20 minutes. Jobs running beyond the time limit will be automatically killed. A job submitted to the `espresso` partition can use two nodes at most (`JOB_SIZE`), and the maximum number of CPUs per node (`MAX_CPUS_PER_NODE`) is 10. Thus, the job in the `espresso` partition can use concurrently up to 2 * 10 = 20 CPUs. The last two fields in the above show the number of nodes by a state in the format "allocated/idle/other/total" (A/I/O/T) and the number of CPUs in the same format.
+The name of the partition shown in the above is `espresso`, which is up and running. `*` denotes that it is the default partition. Your job will be assigned to the `espresso` partition if you do not specify a partition to use. The job time limit (`TIMELIMIT`) is set to be 20 minutes. Jobs running beyond the time limit will be automatically killed. A job assigned to the `espresso` partition can use two nodes at most (`JOB_SIZE`), and the maximum number of CPUs per node (`MAX_CPUS_PER_NODE`) is 10. Thus, the job in the `espresso` partition can use concurrently up to 2 * 10 = 20 CPUs. The last two fields in the above show the number of nodes by a state in the format "allocated/idle/other/total" (A/I/O/T) and the number of CPUs in the same format.
 
 Another useful command is `scontrol show partition`.
 
@@ -328,6 +328,13 @@ srun -c $SLURM_CPUS_PER_TASK ./MYPROGRAM
 ```
 
 Here `MYPROGRAM` is the executable you will run on the compute node. The most important parts are `--nodes=1` and `--cpus-per-task=8`. The latter tells the job scheduler how many threads you intend to run with. Unless the number of nodes is 1, the job could be distributed over many nodes, leading to poor performance.
+
+Furthermore, we recommend that the number of threads is set to be less than 40 because the majority of the compute nodes have up to _only_ 40 CPUs. If the number exceeds 40, the job will be pending until a compute node having more CPUs become available.
+
+``` no-highlight
+$ squeue
+           1862756 longlunch toolarge cbpark    PENDING       0:00   3:00:00      1 (Priority)
+```
 
 ### MPI
 

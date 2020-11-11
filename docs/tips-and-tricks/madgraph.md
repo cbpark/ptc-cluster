@@ -50,7 +50,7 @@ PartitionName=longlunch
 
 As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 27 nodes for a job and the time limit is 3 hours (`MaxNodes=27 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
 
-Now we modify some fields of `input/mg5_configuration.txt` inside MadGraph 5.
+Now we modify some fields of `input/mg5_configuration.txt` inside MadGraph. (As of MadGraph v2.8, the cluster mode does not work. Please see subsection *Running multicore*.)
 
 ``` no-highlight
 pythia8_path = /opt/ohpc/pub/libs/gnu7/pythia/8.2.35
@@ -245,4 +245,28 @@ Since the standard output would be written to `ttbar_mg5_batch_output.log` (`#SB
 
 ``` no-highlight
 tail -f ttbar_mg5_batch_output.log
+```
+
+## Running multicore
+
+For running MadGraph using multicore, modify `input/mg5_configuration.txt` as follows:
+
+``` no-highlight
+(...)
+
+#! Default Running mode
+#!  0: single machine/ 1: cluster / 2: multicore
+run_mode = 2
+
+(...)
+
+#! Nb_core to use (None = all) This is use only for multicore run
+#!  This correspond also to the number core used for code compilation for cluster mode
+nb_core = 40
+```
+
+And, submit the batch file as
+
+``` no-highlight
+sbatch -c 40 run_mg5_slurm.sh
 ```

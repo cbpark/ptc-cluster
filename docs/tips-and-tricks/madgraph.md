@@ -9,7 +9,7 @@ There are two ways to run MadGraph, _interactive execution_ and _batch processin
 Recall that running hard computations on the master node is not allowed. Still, We can get an interactive command interface in the compute node by `srun`. Before going there, we need to load some [modules](../modules.md) to use MadGraph.
 
 ``` no-highlight
-module load gnu7 MG5aMC_PY8_interface collier delphes
+module load gnu7 cmake root MG5aMC_PY8_interface collier
 ```
 
 Then, check the list of currently loaded modules as
@@ -18,11 +18,11 @@ Then, check the list of currently loaded modules as
 $ module list
 
 Currently Loaded Modules:
-  1) autotools        6) fastjet/3.3.0             11) collier/1.2
-  2) prun/1.2         7) hepmc/2.06.09             12) python/2.7.14
-  3) ohpc             8) lhapdf/6.2.1              13) root/6.12.06
-  4) gnu7/7.2.0       9) pythia/8.2.35             14) delphes/3.4.1
-  5) openmpi/1.10.7  10) MG5aMC_PY8_interface/1.0
+  1) autotools        6) cmake/3.15.4   11) python/3.6.4
+  2) prun/1.3         7) gsl/2.4        12) lhapdf/6.2.3
+  3) ohpc             8) root/6.18.00   13) pythia/8.2.35
+  4) gnu7/7.3.0       9) fastjet/3.3.4  14) MG5aMC_PY8_interface/1.0
+  5) openmpi/1.10.7  10) hepmc/2.06.09  15) collier/1.2.5
 ```
 
 Note that MadGraph 5 is not installed in the module. Go to the official [webpage]((https://launchpad.net/mg5amcnlo)) to get the source tarball. After extracting the tarball into a working directory, we jump to a compute node. The compute node will automatically be chosen by Slurm.
@@ -70,9 +70,7 @@ cluster_type = slurm
 cluster_queue = longlunch
 cluster_size = 100
 
-delphes_path = /opt/ohpc/pub/libs/gnu7/delphes/3.4.1/bin
-
-fastjet = fastjet-config
+fastjet = /opt/ohpc/pub/libs/gnu7/fastjet/3.3.4/bin/fastjet-config
 
 collier = /opt/ohpc/pub/libs/gnu7/collier/1.2/lib
 ```

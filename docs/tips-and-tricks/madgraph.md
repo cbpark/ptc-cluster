@@ -50,7 +50,7 @@ PartitionName=longlunch
 
 As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 27 nodes for a job and the time limit is 3 hours (`MaxNodes=27 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
 
-Now we modify some fields of `input/mg5_configuration.txt` inside MadGraph. (As of MadGraph v2.8, the cluster mode does not work. Please see subsection *Running multicore*.)
+Now we modify some fields of `input/mg5_configuration.txt` inside MadGraph. (As of MadGraph v2.8, the cluster mode does not work. Please see subsection *Running multicore*. And, as of MadGraph v2.8, it does not correctly recognize LHAPDF. Install it in the MadGraph prompt: `install lhapdf6`.)
 
 ``` no-highlight
 pythia8_path = /opt/ohpc/pub/libs/gnu7/pythia/8.2.35

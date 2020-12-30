@@ -40,17 +40,18 @@ PartitionName=longlunch
    AllowGroups=usercl1 AllowAccounts=ALL AllowQos=ALL
    AllocNodes=ALL Default=NO QoS=N/A
    DefaultTime=NONE DisableRootJobs=NO ExclusiveUser=NO GraceTime=0 Hidden=NO
-   MaxNodes=27 MaxTime=03:00:00 MinNodes=1 LLN=NO MaxCPUsPerNode=40
-   Nodes=compute-0-[0-28]
+   MaxNodes=27 MaxTime=03:00:00 MinNodes=0 LLN=NO MaxCPUsPerNode=40
+   Nodes=compute-0-[0-29]
    PriorityJobFactor=1 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO
    OverTimeLimit=NONE PreemptMode=OFF
-   State=UP TotalCPUs=1408 TotalNodes=29 SelectTypeParameters=NONE
+   State=UP TotalCPUs=1472 TotalNodes=30 SelectTypeParameters=NONE
+   JobDefaults=(null)
    DefMemPerCPU=3000 MaxMemPerNode=UNLIMITED
 ```
 
-As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can have 27 nodes for a job and the time limit is 3 hours (`MaxNodes=27 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we are in an interactive command line in a compute node.
+As we can see from the above, the `longlunch` partition is allowed only for users in the `usercl1` group (`AllowGroups=usercl1`). A user can become the member of the group by the system administrator. It can use up to 27 nodes for a job, and the time limit is 3 hours (`MaxNodes=27 MaxTime=03:00:00`). We can choose any other partition that we like to use. By running the `srun` command with `--pty bash`, we can use the interactive command line in a compute node.
 
-Now we modify some fields of `input/mg5_configuration.txt` inside MadGraph. (As of MadGraph v2.8, the cluster mode does not work. Please see subsection *Running multicore*. And, as of MadGraph v2.8, it does not correctly recognize LHAPDF and Delphes. Install them in the MadGraph command prompt: `install lhapdf6` and `install Delphes`.)
+Now we modify some fields of `input/mg5_configuration.txt` inside MadGraph. (As of MadGraph v2.8, the cluster mode does not work. Please see subsection *Running multicore*. And, as of MadGraph v2.8, it does not correctly recognize LHAPDF and Delphes. We can install them in the MadGraph command prompt: `install lhapdf6` and `install Delphes`.)
 
 ``` no-highlight
 pythia8_path = /opt/ohpc/pub/libs/gnu7/pythia/8.2.35

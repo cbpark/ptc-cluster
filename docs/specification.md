@@ -53,6 +53,7 @@ The operating system of all the nodes is [CentOS](https://www.centos.org/) 7.4, 
 * [Perl](http://www.perl.org/) 5.16.3,
 * [GNU Emacs](https://www.gnu.org/software/emacs/) 24.3.1,
 * [gnuplot](http://www.gnuplot.info/) 4.6,
+* [Make](https://www.gnu.org/software/make/) 3.82,
 * [Maxima](http://maxima.sourceforge.net/) 5.41.0.
 
 You can list the installed packages by running:

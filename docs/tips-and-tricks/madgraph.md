@@ -18,11 +18,11 @@ Then, check the list of currently loaded modules as
 $ module list
 
 Currently Loaded Modules:
-  1) autotools        6) cmake/3.15.4   11) python/3.6.4
-  2) prun/1.3         7) gsl/2.4        12) lhapdf/6.2.3
-  3) ohpc             8) root/6.18.00   13) pythia/8.2.35
-  4) gnu7/7.3.0       9) fastjet/3.3.4  14) MG5aMC_PY8_interface/1.0
-  5) openmpi/1.10.7  10) hepmc/2.06.09  15) collier/1.2.5
+  1) autotools        6) cmake/3.15.4   11) hepmc/2.06.09
+  2) prun/1.3         7) python/2.7.14  12) lhapdf/6.2.3
+  3) ohpc             8) gsl/2.4        13) pythia/8.2.35
+  4) gnu7/7.3.0       9) root/6.18.00   14) MG5aMC_PY8_interface/1.0
+  5) openmpi/1.10.7  10) fastjet/3.3.4  15) collier/1.2.5
 ```
 
 Note that MadGraph 5 is not installed in the module. Go to the official [webpage]((https://launchpad.net/mg5amcnlo)) to get the source tarball. After extracting the tarball into a working directory, we jump to a compute node. The compute node will automatically be chosen by Slurm.

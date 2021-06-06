@@ -309,6 +309,24 @@ $ squeue
 178381 microcent multiple   cbpark  RUNNING       0:01   1:00:00      1 compute-0-23
 ```
 
+### Excluding certain nodes
+
+You may want to exclude some nodes from the resources granted to the job because, for instance, they are partially occupied by other users. In this case, add the `--exclude` option to the `sbatch` or `srun` commands or to the script. For example,
+
+``` no-highlight
+sbatch --exclude=compute-0-[0-5,10] myscript.sh
+```
+
+The above command will exclude the compute nodes from `compute-0-0` to `compute-0-5` and `compute-0-10` for the job. It can be added to the job script as follows:
+
+``` bash
+#! /bin/bash -l
+
+#SBATCH --exclude=compute-0-[0-5,10]
+
+(...)
+```
+
 ### OpenMP
 
 [OpenMP](http://www.openmp.org/) supports multiprocessing programming by implementing multithreading which runs concurrently with the runtime environment allocating threads to different processors. (Do not confuse it with [Open MPI](https://www.open-mpi.org/).) Note that you should make sure that all the CPU cores you request are on the same node. Below is an example script using OpenMP.

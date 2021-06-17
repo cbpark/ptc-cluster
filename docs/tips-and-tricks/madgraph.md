@@ -4,6 +4,12 @@ Since there are a lot of questions and requests in regard to run [MadGraph 5](ht
 
 There are two ways to run MadGraph, _interactive execution_ and _batch processing_. Both are possible to run it in the cluster.
 
+**Notice** (June 2021): The MadGraph 5 team has announced dropping old python support. Python version 2.7 is still supported, but you will see a warning message notifying you that the future version of MG5 will drop the support. You can activate Python version 3.8.10 by explicitly specifying the version in the module command:
+
+```
+module load python/3.8.10
+```
+
 ## Interactive execution
 
 Recall that running hard computations on the master node is not allowed. Still, We can get an interactive command interface in the compute node by `srun`. Before going there, we need to load some [modules](../modules.md) to use MadGraph.

@@ -247,3 +247,19 @@ Note that `SLURM_TIME_FORMAT` follows the formats of the `strftime` function. Se
 ``` no-highlight
 $ scontrol show node $(sinfo | grep down | awk '{print $6}') | awk '/NodeName|Reason/{print}'
 ```
+
+## Disable Hyperthreading using racadm
+
+``` no-highlight
+racadm --nocertwarn -r compute-node.ipmi -u USER -p PASSWORD get BIOS.ProcSettings.LogicalProc
+racadm --nocertwarn -r compute-node.ipmi -u USER -p PASSWORD set BIOS.ProcSettings.LogicalProc Disabled
+racadm --nocertwarn -r compute-node.ipmi -u USER -p PASSWORD get BIOS.ProcSettings.LogicalProc
+```
+
+Check the Key name. If it's `BIOS.Setup.1-1`, run
+
+```
+racadm --nocertwarn -r compute-node.ipmi -u USER -p PASSWORD jobqueue create BIOS.Setup.1-1 -r pwrcycle -s TIME_NOW -e TIME_NA
+```
+
+Then, reboot the node.

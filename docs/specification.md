@@ -1,6 +1,6 @@
 # Specification and SSH connection
 
-The PTC cluster consists of 1 **master node** and 46 **compute nodes** now. There is no login server and the SSH connection to `ptc.ibs.re.kr` directs to the master node. All the machines are in the data center located on the ground floor of the experiment building in the [IBS](https://www.ibs.re.kr/) main site.
+The PTC cluster consists of 1 **master node** and 47 **compute nodes** now. There is no login server and the SSH connection to `ptc.ibs.re.kr` directs to the master node. All the machines are in the data center located on the ground floor of the experiment building in the [IBS](https://www.ibs.re.kr/) main site.
 
 | ![xkcd - Datacenter scale](https://imgs.xkcd.com/comics/datacenter_scale.png) |
 | :--: |
@@ -12,7 +12,7 @@ The PTC cluster consists of 1 **master node** and 46 **compute nodes** now. Ther
 
 The master node has 1.6 GHz 6-core Intel Xeon CPU and 16 GB memory with 32 GB swap space. Note that **the master node is not intended for hard computations or tasks**, but for distributing and logging computing jobs to compute nodes. In most cases, you will run commands at the master node and the real computations will be performed by the compute node.
 
-Each compute node has quite a number of CPU cores, 24 to 72 cores with clock speeds of 2.1 GHz to 2.8 GHz. The total accumulated number of CPU cores of all the compute node is 1856. The hyper-threading of CPU is disabled for all nodes. Each node has more than 64 GB memory.
+Each compute node has quite a number of CPU cores, 24 to 72 cores with clock speeds of 2.1 GHz to 2.8 GHz. The total accumulated number of CPU cores of all the compute node is 1920. The hyper-threading of CPU is disabled for all nodes. Each node has more than 64 GB memory.
 
 To see the detailed information of the compute nodes, run
 

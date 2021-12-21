@@ -16,9 +16,9 @@ source /usr/bin/virtualenvwrapper_lazy.sh
 By running `source ~/.bash_profile`, you are ready to use the virtualenvwrapper. Now, load a python [module](../modules.md) into your environment. For example,
 
 ``` no-highlight
-$ module load python/3.6.4
+$ module load python/3.8.10
 $ which python3
-/opt/ohpc/pub/libs/gnu7/python-3.6.4/bin/python3
+/opt/ohpc/pub/libs/gnu7/python-3.8.10/bin/python3
 ```
 
 It's time to create a virtual environment. Suppose that the name of the environment is `jupyter`.
@@ -49,7 +49,7 @@ After activating the virtual environment, make sure that `.virtualenv` has been 
 ``` no-highlight
 $ workon jupyter
 $ echo $PATH
-/home/cbpark/.virtualenvs/jupyter/bin:/opt/ohpc/pub/libs/gnu7/python-3.6.4/bin:(...)
+/home/cbpark/.virtualenvs/jupyter/bin:/opt/ohpc/pub/libs/gnu7/python-3.8.10/bin:(...)
 ```
 
 Install jupyter using [pip](https://pypi.org/project/pip/). The packages will be installed in `~/.virtualenvs/jupyter`. The whole installation may take several minutes.
@@ -98,9 +98,9 @@ Do not forget to add the `--no-browser` option, because otherwise, it will autom
 To open the jupyter notebook in the web browser of your desktop or laptop, we use ssh tunneling.
 
 ``` no-highlight
-$ ssh -t cbpark@ptc.ibs.re.kr -L 8888:localhost:8888 ssh compute-0-25 -L 8888:localhost:8888
+$ ssh -p 4022 -t cbpark@ptc.ibs.re.kr -L 8888:localhost:8888 ssh compute-0-25 -L 8888:localhost:8888
 cbpark@ptc.ibs.re.kr's password:
 cbpark@compute-0-25's password:
 ```
 
-Customize the user ID and hostname to yours in the above. (Note that you can connect to a compute node via ssh as long as you are running a job in the node.) If you have successfully logged in the compute node, you can now open the jupyter notebook in the web browser. Open your favorite web browser and go to `http://localhost:8888`.
+Customize the user ID (`cbpark`) and hostname (`compute-0-25`) to yours in the above. (Note that you can connect to a compute node via ssh as long as you are running a job in the node.) If you have successfully logged in the compute node, you can now open the jupyter notebook in the web browser. Open your favorite web browser and go to `http://localhost:8888`.

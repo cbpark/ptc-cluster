@@ -204,28 +204,10 @@ NodeName=compute-0-0 Arch=x86_64 CoresPerSocket=20
    CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
    ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
 
-
-NodeName=compute-0-1 Arch=x86_64 CoresPerSocket=20
-   CPUAlloc=0 CPUErr=0 CPUTot=40 CPULoad=0.01
-   AvailableFeatures=(null)
-   ActiveFeatures=(null)
-   Gres=(null)
-   NodeAddr=compute-0-1 NodeHostName=compute-0-1 Version=17.02
-   OS=Linux RealMemory=193336 AllocMem=0 FreeMem=190095 Sockets=2 Boards=1
-   MemSpecLimit=4000
-   State=IDLE ThreadsPerCore=1 TmpDisk=0 Weight=1131 Owner=N/A MCS_label=N/A
-   Partitions=espresso,microcentury,longlunch,workday,testmatch,nextweek,nextmonth
-   BootTime=2019-05-02 15:12:57 SlurmdStartTime=2019-05-03 11:48:02
-   CfgTRES=cpu=40,mem=193336M
-   AllocTRES=
-   CapWatts=n/a
-   CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
-   ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
-
 (...)
 ```
 
-One can check the list of nodes assigned to the partition by running `\sinfo`.
+You can check the list of nodes assigned to the partition by running `\sinfo`.
 
 ``` no-highlight
 $ \sinfo
@@ -254,14 +236,14 @@ will submit `run.sh` to the `espresso` partition in the `compute-0-1` and `compu
 
 ### Interactive sessions
 
-Another example is to jump into an interactive environment.
+Another example is to jump into an interactive environment:
 
 ``` no-highlight
 $ srun -p espresso -c 10 --pty /bin/bash
 [cbpark@compute-0-0 ~]$
 ```
 
-Here, ten CPU cores will be allocated (`-c 10`) in the `espresso` partition. A particular node can request by:
+By this command, ten CPU cores will be allocated (`-c 10`) in the `espresso` partition. To be assigned particular nodes, add the `-w` option.
 
 ``` no-highlight
 $ srun -p espresso -c 10 -w 'compute-0-4' --pty /bin/bash
